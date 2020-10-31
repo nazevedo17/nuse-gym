@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "2eq22V9kqBOsUoP0TjsI7j3GhRgx1IFbV1l/PaUJuw8l3kM4qT/cAKY2m+ZAETNS0tZ9OHjsqJNsyMnpe2z0+g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\sergi\\Documents\\GitHub\\nuse-gym\\Nuse\\DataAccess\\DataAccess.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sergi\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\sergi\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
