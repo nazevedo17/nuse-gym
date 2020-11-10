@@ -1,15 +1,11 @@
 import PropTypes from 'prop-types';
 import { withTranslation } from 'i18n';
 
-// import styles from '../styles/Home.module.css';
-import A from 'components/Util/A';
-
-import PageTitle from 'components/Util/PageTitle';
+import PageTitle from 'components/util/PageTitle';
 
 const Login = ({ t }) => (
   <>
     <PageTitle title={t('login:page-title')} />
-    <A href="/">Go to Home</A>
   </>
 );
 

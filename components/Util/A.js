@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { useRouter } from 'next/router';
 
 const A = ({ href, children }) => {
@@ -13,6 +15,11 @@ const A = ({ href, children }) => {
       {children}
     </a>
   );
+};
+
+A.propTypes = {
+  href: PropTypes.string.isRequired,
+  children: PropTypes.any.isRequired,
 };
 
 export default A;

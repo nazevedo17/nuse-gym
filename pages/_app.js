@@ -4,6 +4,9 @@ import { appWithTranslation } from 'i18n';
 
 import '../styles/globals.css';
 
+import Header from 'components/app/Header';
+import Footer from 'components/app/Footer';
+
 const MyApp = ({ Component, pageProps }) => (
   <>
     <Head>
@@ -11,7 +14,10 @@ const MyApp = ({ Component, pageProps }) => (
       <link rel="icon" href="/favicon.ico" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
+
+    <Header />
     <Component {...pageProps} />
+    <Footer />
   </>
 );
 

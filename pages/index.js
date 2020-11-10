@@ -1,19 +1,25 @@
 import PropTypes from 'prop-types';
 import { withTranslation } from 'i18n';
 
-import styles from '../styles/Home.module.css';
+import styles from 'styles/pages/Home.module.css';
 
-import PageTitle from 'components/Util/PageTitle';
-import A from 'components/Util/A';
-import Img from 'components/Util/Img';
+import PageTitle from 'components/util/PageTitle';
+import A from 'components/util/A';
+import Img from 'components/util/Img';
 
 const Home = ({ t }) => (
   <>
     <PageTitle title={t('home:page-title')} />
-    <h1 className="text-center">Page Test</h1>
-    <A href="/login">Go to Login</A>
-    <p className={styles.test}>{process.env.NEXT_PUBLIC_TEST}</p>
-    <Img src="/images/test.jpg" alt="img-test" width="100" height="100" />
+    <section>
+      <article>
+        <h1 className="text-center">Page Test</h1>
+        <A href="/login">Go to Login</A>
+      </article>
+      <article>
+        <p className={styles.test}>{process.env.NEXT_PUBLIC_TEST}</p>
+        <Img src="/images/test.jpg" alt="img-test" width="100" height="100" />
+      </article>
+    </section>
   </>
 );
 
