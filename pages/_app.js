@@ -1,5 +1,8 @@
-import "../styles/globals.css";
-import Head from "next/head";
+import App from 'next/app';
+import Head from 'next/head';
+import { appWithTranslation } from 'i18n';
+
+import '../styles/globals.css';
 
 const MyApp = ({ Component, pageProps }) => (
   <>
@@ -12,4 +15,6 @@ const MyApp = ({ Component, pageProps }) => (
   </>
 );
 
-export default MyApp;
+MyApp.getInitialProps = async (appContext) => ({ ...(await App.getInitialProps(appContext)) });
+
+export default appWithTranslation(MyApp);
