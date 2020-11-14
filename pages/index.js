@@ -1,27 +1,57 @@
 import PropTypes from 'prop-types';
 import { withTranslation } from 'i18n';
 
-import { Typography } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 
 import PageTitle from 'components/util/PageTitle';
-import A from 'components/util/A';
-import Img from 'components/util/Img';
+// import A from 'components/util/A';
+import Layout from 'components/layout';
+// import Img from 'components/util/Img';
 
 const Home = ({ t }) => (
   <>
     <PageTitle title={t('home:page-title')} />
-    <section>
-      <article>
-        <Typography variant="h1" align="center">
-          Page Test
-        </Typography>
-        <A href="/login">Go to Login</A>
-      </article>
-      <article>
+    <Layout>
+      <section>
+        <Box component="article" p={2}>
+          <Typography variant="h1" align="center">
+            Home Page
+          </Typography>
+          <Typography variant="h1" align="center">
+            Home Page
+          </Typography>
+          <Typography variant="h1" align="center">
+            Home Page
+          </Typography>
+          <Typography variant="h1" align="center">
+            Home Page
+          </Typography>
+          <Typography variant="h1" align="center">
+            Home Page
+          </Typography>
+          <Typography variant="h1" align="center">
+            Home Page
+          </Typography>
+          <Typography variant="h1" align="center">
+            Home Page
+          </Typography>
+          <Typography variant="h1" align="center">
+            Home Page
+          </Typography>
+          <Typography variant="h1" align="center">
+            Home Page
+          </Typography>
+          <Typography variant="h1" align="center">
+            Home Page
+          </Typography>
+        </Box>
+        {/* <article>
+              <A href="/login">Go to Login</A>
         <p>{process.env.NEXT_PUBLIC_TEST}</p>
         <Img src="/images/test.jpg" alt="img-test" width="100" height="100" />
-      </article>
-    </section>
+      </article> */}
+      </section>
+    </Layout>
   </>
 );
 

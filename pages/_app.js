@@ -2,8 +2,20 @@ import App from 'next/app';
 import Head from 'next/head';
 import { appWithTranslation } from 'i18n';
 
-import Header from 'components/app/Header';
-import Footer from 'components/app/Footer';
+import '../styles/globals.css';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#212121',
+    },
+    secondary: {
+      main: '#D32822',
+    },
+  },
+});
 
 const MyApp = ({ Component, pageProps }) => (
   <>
@@ -14,9 +26,9 @@ const MyApp = ({ Component, pageProps }) => (
       <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
     </Head>
 
-    <Header />
-    <Component {...pageProps} />
-    <Footer />
+    <ThemeProvider theme={theme}>
+      <Component {...pageProps} />
+    </ThemeProvider>
   </>
 );
 
