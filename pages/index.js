@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { withTranslation } from 'i18n';
 
-import styles from 'styles/pages/Home.module.css';
+import { Typography } from '@material-ui/core';
 
 import PageTitle from 'components/util/PageTitle';
 import A from 'components/util/A';
@@ -12,11 +12,13 @@ const Home = ({ t }) => (
     <PageTitle title={t('home:page-title')} />
     <section>
       <article>
-        <h1 className="text-center">Page Test</h1>
+        <Typography variant="h1" align="center">
+          Page Test
+        </Typography>
         <A href="/login">Go to Login</A>
       </article>
       <article>
-        <p className={styles.test}>{process.env.NEXT_PUBLIC_TEST}</p>
+        <p>{process.env.NEXT_PUBLIC_TEST}</p>
         <Img src="/images/test.jpg" alt="img-test" width="100" height="100" />
       </article>
     </section>

@@ -1,5 +1,3 @@
-import styles from 'styles/components/Header.module.css';
-
 const Header = ({}) => (
   <header>
     <nav>
