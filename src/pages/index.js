@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import { withTranslation } from 'i18n';
+import { withTranslation } from 'src/i18n';
 
 import { Typography, Box } from '@material-ui/core';
 
-import PageTitle from 'components/util/PageTitle';
+import PageTitle from 'src/components/util/PageTitle';
 // import A from 'components/util/A';
-import Layout from 'components/layout';
+import Layout from 'src/components/layout';
 // import Img from 'components/util/Img';
 
 const Home = ({ t }) => (
