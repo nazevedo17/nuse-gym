@@ -1,6 +1,6 @@
 import { Typography, Box } from '@material-ui/core';
 
-const Footer = ({}) => (
+const Footer = () => (
   <Box component="footer" p={4}>
     <Typography variant="body2" color="textSecondary" align="center">
       Copyright © Nuse Gym
