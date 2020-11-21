@@ -51,9 +51,8 @@ const Login = ({ t }) => {
             </Typography>
 
             <LoginForm t={t} />
-
-            <Footer />
           </div>
+          <Footer />
         </Grid>
       </Grid>
     </>

@@ -19,8 +19,8 @@ const Layout = ({ children }) => {
       <Header />
       <Container maxWidth="xl" className={classes.container}>
         {children}
+        <Footer />
       </Container>
-      <Footer />
     </>
   );
 };
