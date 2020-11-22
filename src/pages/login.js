@@ -52,7 +52,7 @@ const Login = ({ t }) => {
 
             <LoginForm t={t} />
           </div>
-          <Footer />
+          <Footer t={t} />
         </Grid>
       </Grid>
     </>

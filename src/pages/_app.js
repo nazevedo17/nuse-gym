@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { appWithTranslation } from 'src/i18n';
 
 import '../../styles/globals.css';
-import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 import theme from '../theme';
 
@@ -25,10 +25,8 @@ const MyApp = ({ Component, pageProps }) => {
       </Head>
 
       <ThemeProvider theme={theme}>
-        <StylesProvider injectFirst>
-          <CssBaseline />
-          <Component {...pageProps} />
-        </StylesProvider>
+        <CssBaseline />
+        <Component {...pageProps} />
       </ThemeProvider>
     </>
   );

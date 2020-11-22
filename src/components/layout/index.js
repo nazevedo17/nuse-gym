@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -11,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Layout = ({ children }) => {
+const Layout = ({ t, children }) => {
   const classes = useStyles();
 
   return (
@@ -19,10 +21,14 @@ const Layout = ({ children }) => {
       <Header />
       <Container maxWidth="xl" className={classes.container}>
         {children}
-        <Footer />
+        <Footer t={t} />
       </Container>
     </>
   );
+};
+
+Layout.propTypes = {
+  t: PropTypes.func.isRequired,
 };
 
 export default Layout;

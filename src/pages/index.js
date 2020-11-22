@@ -11,7 +11,7 @@ import Layout from 'src/components/layout';
 const Home = ({ t }) => (
   <>
     <PageTitle title={t('home:page-title')} />
-    <Layout>
+    <Layout t={t}>
       <section>
         <Box component="article" p={2}>
           <Typography variant="h1" align="center">
