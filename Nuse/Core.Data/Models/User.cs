@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace Nuse.Core.Data.Models
+namespace Core.Data.Models
 {
     public class User
     {
@@ -11,5 +10,6 @@ namespace Nuse.Core.Data.Models
         public Int64 CostumerId { get; set; }
         public String Username { get; set; }
         public String Password { get; set; }
+        public String Token { get; set; }
     }
 }
