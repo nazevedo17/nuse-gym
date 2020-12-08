@@ -1,0 +1,12 @@
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Example\bin\Debug\Example.exe.config
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Example\bin\Debug\Example.exe
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Example\bin\Debug\Example.pdb
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Example\obj\Debug\Example.csprojAssemblyReference.cache
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Example\obj\Debug\Example.Properties.Resources.resources
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Example\obj\Debug\Example.csproj.GenerateResource.cache
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Example\obj\Debug\Example.csproj.CoreCompileInputs.cache
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Example\obj\Debug\Example.exe
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Example\obj\Debug\Example.pdb
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Example\obj\Debug\Example.Forms.BaseForm.resources
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Example\obj\Debug\Example.Forms.MainForm.resources
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Example\obj\Debug\Example.Forms.Database.DatabaseForm.resources
