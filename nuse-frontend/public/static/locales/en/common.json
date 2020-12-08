@@ -1,0 +1,12 @@
+{
+  "language": "Language",
+  "text-field": {
+    "password": "Password"
+  },
+  "errors": {
+    "required-field": "Required field",
+    "invalid": {
+      "email": "Invalid email"
+    }
+  }
+}
