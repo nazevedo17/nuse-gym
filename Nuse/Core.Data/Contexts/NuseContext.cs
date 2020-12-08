@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace Nuse.Core.Data.Contexts
+namespace Core.Data.Contexts
 {
     public class NuseContext : DbContext
     {
@@ -13,8 +13,8 @@ namespace Nuse.Core.Data.Contexts
         {
         }
 
-        public DbSet<Models.Costumer> Costumers { get; set; }
-        public DbSet<Models.User> Users { get; set; }
-        public DbSet<Models.Login> Logins { get; set; }
+        public DbSet<Costumer> Costumers { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Login> Logins { get; set; }
     }
 }

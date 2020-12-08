@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Nuse.Core.Data.Models
+namespace Core.Data.Models
 {
     public class Costumer
     {
