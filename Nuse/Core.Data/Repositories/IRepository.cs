@@ -8,9 +8,6 @@ namespace Core.Data.Repositories
     {
         IQueryable<TEntity> GetAll();
 
-       
-        //Task<TEntity> GetByIdAsync(Int64 id);
-
         Task<TEntity> AddAsync(TEntity entity);
 
         Task<TEntity> UpdateAsync(TEntity entity);

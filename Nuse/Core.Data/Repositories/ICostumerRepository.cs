@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Core.Data.Repositories
 {
-    public interface ICostumerRepository : IRepository<Costumer>
+    public interface ICustomerRepository : IRepository<Customer>
     {
+        Task<Customer> GetCostumerByIdAsync(int id);
     }
 }

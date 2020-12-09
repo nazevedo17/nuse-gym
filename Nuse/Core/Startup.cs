@@ -1,4 +1,5 @@
 using Core.Data.Contexts;
+using Core.Data.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,6 +38,9 @@ namespace Nuse.Core
             {
                 options.UseSqlServer(Configuration.GetConnectionString("NuseConnection"));
             });
+
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
 
             var key = Encoding.ASCII.GetBytes(Settings.Secret);
 

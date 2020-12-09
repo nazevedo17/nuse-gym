@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Core.Data.Models
 {
-    public class Costumer
+    public class Customer
     {
         public Int64 Id { get; set; }
         public String FirstName { get; set; }

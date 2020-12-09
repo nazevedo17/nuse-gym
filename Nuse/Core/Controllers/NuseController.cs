@@ -32,23 +32,5 @@ namespace Nuse.Core.Controllers
                 return BadRequest(ex);
             }
         }
-
-        //[HttpGet("Costumers")]
-        //public async Task<ActionResult<IEnumerable<Costumer>>> GetCostumers()
-        //{
-        //    return Context.Costumers.ToList();
-        //}
-
-        //[HttpGet("Users")]
-        //public async Task<ActionResult<IEnumerable<User>>> GetUsers()
-        //{
-        //    return Context.Users.ToList();
-        //}
-
-        //[HttpGet("Logins")]
-        //public async Task<ActionResult<IEnumerable<Login>>> GetLogins()
-        //{
-        //    return Context.Logins.ToList();
-        //}
     }
 }

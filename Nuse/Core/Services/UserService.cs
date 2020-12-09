@@ -1,5 +1,6 @@
 ﻿using Core.Data.Contexts;
 using Core.Data.Models;
+using Core.Data.Repositories;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -11,16 +12,18 @@ using System.Threading.Tasks;
 
 namespace Nuse.Core.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
-        public User Authenticate(string username, string password)
+        private readonly IUserRepository _userRepository;
+
+        public UserService(IUserRepository userRepository)
         {
-            //var user = Context.Users.Where(x => x.Username == username && x.Password == password).FirstOrDefault();
+            _userRepository = userRepository;
+        }
 
-            User user = null;
-
-            if (username == "batman@gmail.com" && password == "batman")
-                user = new User() { Id = 1, Username = "batman", CostumerId = 1 };
+        public async Task<User> Authenticate(String username, String password)
+        {
+            var user = await _userRepository.GetUserByUsernamePasswordAsync(username, password);
 
             if (user == null)
                 return null;
@@ -38,12 +41,18 @@ namespace Nuse.Core.Services
 
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
+
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
 
             user.Password = null;
 
             return user;
+        }
+
+        public async Task<User> GetUserByIdAsync(Int64 id)
+        {
+            return await _userRepository.GetUserByIdAsync(id);
         }
     }
 }
