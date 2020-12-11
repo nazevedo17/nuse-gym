@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Data.Models.Base;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,6 +67,26 @@ namespace Core.Data.Repositories
             {
                 throw new Exception($"{nameof(entity)} could not be updated: {ex.Message}");
             }
+        }
+
+        private async Task<Int32> SaveAsync()
+        {
+            foreach (var entry in _context.ChangeTracker.Entries<IAuditable>())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.Entity.CreatedBy = entry.Entity.ChangedBy = currentUser.Id;
+                        entry.Entity.CreatedOn = entry.Entity.ChangedOn = DateTime.UtcNow;
+                        break;
+                    case EntityState.Modified:
+                        entry.Entity.ChangedBy = currentUser.Id;
+                        entry.Entity.ChangedOn = DateTime.UtcNow;
+                        break;
+                }
+            }
+
+            return await _context.SaveChangesAsync();
         }
     }
 }
