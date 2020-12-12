@@ -21,11 +21,13 @@ function reducer(state = initialState, action) {
       };
 
     case actionTypes.LOGIN_SUCCESS:
-      console.log(action.data);
       return {
         ...state,
         ...{ user: action.data },
       };
+
+    case actionTypes.LOGOUT:
+      return initialState;
 
     default:
       return state;

@@ -2,23 +2,19 @@ import { all, put, takeLatest } from 'redux-saga/effects';
 import { actionTypes, failure, loading, loginSuccess } from './actions';
 
 function* loginSaga(data) {
-  //temporary
-  const body = {
-    username: data.payload.email,
-    password: data.payload.password,
-  };
-
+  const { payload } = data;
+  
   yield put(loading(true));
   yield put(failure(false));
 
   try {
-    const res = yield fetch('https://localhost:5001/api/nuse/login', {
+    const res = yield fetch(process.env.NEXT_PUBLIC_API + '/nuse/login', {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       method: 'POST',
-      body: JSON.stringify(body),
+      body: JSON.stringify(payload),
     });
     const data = yield res.json();
 

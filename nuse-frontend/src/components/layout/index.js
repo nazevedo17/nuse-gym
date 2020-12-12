@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../redux/actions';
+
 import { Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Cookies from 'js-cookie';
@@ -19,11 +22,11 @@ const useStyles = makeStyles((theme) => ({
 const Layout = ({ t, children }) => {
   const classes = useStyles();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('token');
     if (!Cookies.get('token')) {
-      console.log('logout');
+      dispatch(logout());
       router.push('/login');
     }
   }, [Cookies.get('token')]);

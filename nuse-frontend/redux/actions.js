@@ -3,6 +3,7 @@ export const actionTypes = {
   LOADING: 'LOADING',
   LOGIN: 'LOGIN',
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+  LOGOUT: 'LOGOUT',
 };
 
 export function failure(error) {
@@ -16,6 +17,12 @@ export function loading(loadingValue) {
   return {
     type: actionTypes.LOADING,
     loadingValue,
+  };
+}
+
+export function logout() {
+  return {
+    type: actionTypes.LOGOUT,
   };
 }
 

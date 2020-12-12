@@ -4,9 +4,6 @@
     "password": "Palavra-passe"
   },
   "errors": {
-    "required-field": "Campo obrigatório",
-    "invalid": {
-      "email": "Email inválido"
-    }
+    "required-field": "Campo obrigatório"
   }
 }

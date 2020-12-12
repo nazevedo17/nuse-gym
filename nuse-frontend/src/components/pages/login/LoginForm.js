@@ -32,13 +32,13 @@ const LoginForm = ({ t }) => {
   const user = useSelector((state) => state.user);
 
   const LoginSchema = yup.object().shape({
-    email: yup.string().email('errors.invalid.email').required('errors.required-field'),
+    username: yup.string().required('errors.required-field'),
     password: yup.string().required('errors.required-field'),
   });
 
   const formik = useFormik({
     initialValues: {
-      email: '',
+      username: '',
       password: '',
     },
     validationSchema: LoginSchema,
@@ -63,15 +63,15 @@ const LoginForm = ({ t }) => {
         margin="normal"
         required
         fullWidth
-        id="email"
-        label="Email"
-        name="email"
-        autoComplete="email"
+        id="username"
+        label="Username"
+        name="username"
+        autoComplete="username"
         autoFocus
         onChange={formik.handleChange}
-        value={formik.values.email}
-        error={formik.touched.email && !!formik.errors.email}
-        helperText={formik.touched.email && t(formik.errors.email)}
+        value={formik.values.username}
+        error={formik.touched.username && !!formik.errors.username}
+        helperText={formik.touched.username && t(formik.errors.username)}
         disabled={loading}
       />
       <TextField
