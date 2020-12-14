@@ -1,12 +1,22 @@
 import { useEffect } from 'react';
 import App from 'next/app';
 import Head from 'next/head';
+import Router from 'next/router';
 import { appWithTranslation } from 'src/i18n';
 
 import '../../styles/globals.css';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 import theme from '../theme';
+
+import { wrapper } from '../../redux/store';
+
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
+
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {
@@ -34,4 +44,4 @@ const MyApp = ({ Component, pageProps }) => {
 
 MyApp.getInitialProps = async (appContext) => ({ ...(await App.getInitialProps(appContext)) });
 
-export default appWithTranslation(MyApp);
+export default wrapper.withRedux(appWithTranslation(MyApp));

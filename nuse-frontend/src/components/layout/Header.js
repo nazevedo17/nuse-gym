@@ -1,6 +1,14 @@
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
 import { makeStyles } from '@material-ui/core/styles';
 import { IconButton, Drawer, AppBar, Toolbar, List, Typography, ListItem, ListItemIcon } from '@material-ui/core';
-import { AccountCircle, Home, Group } from '@material-ui/icons';
+import { Home, Group, ExitToApp } from '@material-ui/icons';
+
+import Cookies from 'js-cookie';
+
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../redux/actions';
 
 const drawerWidth = 75;
 
@@ -33,6 +41,20 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
   const classes = useStyles();
 
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push('/login');
+  };
+
+  useEffect(() => {
+    if (!Cookies.get('token')) {
+      handleLogout();
+    }
+  }, [Cookies.get('token')]);
+
   return (
     <>
       <AppBar position="sticky" className={classes.appBar}>
@@ -40,8 +62,8 @@ const Header = () => {
           <Typography variant="h6" className={classes.title}>
             Nuse Gym
           </Typography>
-          <IconButton color="inherit">
-            <AccountCircle />
+          <IconButton color="inherit" onClick={handleLogout}>
+            <ExitToApp />
           </IconButton>
         </Toolbar>
       </AppBar>

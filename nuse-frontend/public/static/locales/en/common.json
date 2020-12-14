@@ -4,9 +4,6 @@
     "password": "Password"
   },
   "errors": {
-    "required-field": "Required field",
-    "invalid": {
-      "email": "Invalid email"
-    }
+    "required-field": "Required field"
   }
 }
