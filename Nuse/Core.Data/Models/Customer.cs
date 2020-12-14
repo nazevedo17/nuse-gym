@@ -1,20 +1,48 @@
-﻿using Core.Data.Models.Bases;
+﻿using Core.Data.Models.Base;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Core.Data.Models
 {
-    public class Customer : BaseModel, IAuditable
+    public class Customer : IAuditable
     {
+        public Int64 Id { get; set; }
+
+        [Required]
+        [StringLength(Constants.MediumLength)]
         public String FirstName { get; set; }
+
+        [Required]
+        [StringLength(Constants.MediumLength)]
         public String LastName { get; set; }
+
+        [Required]
+        [StringLength(Constants.LargeLength)]
+        [EmailAddress]
         public String Email { get; set; }
+
+        [Phone]
         public String? PhoneNumber { get; set; }
+
         public String? Address { get; set; }
+
+        [Required]
         public Byte Gender { get; set; }
+
+        [Required]
         public DateTimeOffset BirthDate { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public int? CreatedBy { get; set; }
-        public DateTime ChangedOn { get; set; }
-        public int? ChangedBy { get; set; }
+
+        [Required]
+        public DateTimeOffset CreatedOn { get; set; }
+
+        public Int64? CreatedBy { get; set; }
+
+        [Required]
+        public DateTimeOffset ChangedOn { get; set; }
+
+        public Int64? ChangedBy { get; set; }
+
+
+        public virtual User User { get; set; }
     }
 }

@@ -6,9 +6,9 @@ namespace Core.Data.Models.Base
 {
     public interface IAuditable
     {
-        DateTime CreatedOn { get; set; }
-        int? CreatedBy { get; set; }
-        DateTime ChangedOn { get; set; }
-        int? ChangedBy { get; set; }
+        DateTimeOffset CreatedOn { get; set; }
+        long? CreatedBy { get; set; }
+        DateTimeOffset ChangedOn { get; set; }
+        long? ChangedBy { get; set; }
     }
 }

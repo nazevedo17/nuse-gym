@@ -17,20 +17,21 @@ namespace Nuse.Core.Controllers
         [AllowAnonymous]
         public IActionResult Authenticate([FromBody] User model)
         {
-            try
-            {
-                var service = new UserService();
-                var user = service.Authenticate(model.Username, model.Password);
+            //try
+            //{
+            //    var service = new UserService();
+            //    var user = service.Authenticate(model.Username, model.Password);
 
-                if (user == null)
-                    return BadRequest(new { message = "Usuário ou senha inválidos" });
+            //    if (user == null)
+            //        return BadRequest(new { message = "Usuário ou senha inválidos" });
 
-                return Ok(user);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
+            //    return Ok(user);
+            //}
+            //catch (Exception ex)
+            //{
+            //    return BadRequest(ex);
+            //}
+            return BadRequest();
         }
     }
 }

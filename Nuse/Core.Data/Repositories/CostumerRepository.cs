@@ -14,7 +14,7 @@ namespace Core.Data.Repositories
         {
         }
 
-        public async Task<Customer> GetCostumerByIdAsync(int id)
+        public async Task<Customer> GetCustomerByIdAsync(Int64 id)
         {
             return await GetAll().FirstOrDefaultAsync(x => x.Id == id);
         }

@@ -1,0 +1,9 @@
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Contracts\bin\Debug\netcoreapp3.1\Nuse.Core.Contracts.deps.json
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Contracts\bin\Debug\netcoreapp3.1\Nuse.Core.Contracts.dll
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Contracts\bin\Debug\netcoreapp3.1\Nuse.Core.Contracts.pdb
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Contracts\obj\Debug\netcoreapp3.1\Core.Contracts.csprojAssemblyReference.cache
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Contracts\obj\Debug\netcoreapp3.1\Core.Contracts.AssemblyInfoInputs.cache
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Contracts\obj\Debug\netcoreapp3.1\Core.Contracts.AssemblyInfo.cs
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Contracts\obj\Debug\netcoreapp3.1\Core.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Contracts\obj\Debug\netcoreapp3.1\Nuse.Core.Contracts.dll
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Contracts\obj\Debug\netcoreapp3.1\Nuse.Core.Contracts.pdb

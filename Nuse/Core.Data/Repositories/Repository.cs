@@ -76,11 +76,11 @@ namespace Core.Data.Repositories
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedBy = entry.Entity.ChangedBy = currentUser.Id;
+                        //entry.Entity.CreatedBy = entry.Entity.ChangedBy = currentUser.Id;
                         entry.Entity.CreatedOn = entry.Entity.ChangedOn = DateTime.UtcNow;
                         break;
                     case EntityState.Modified:
-                        entry.Entity.ChangedBy = currentUser.Id;
+                        //entry.Entity.ChangedBy = currentUser.Id;
                         entry.Entity.ChangedOn = DateTime.UtcNow;
                         break;
                 }

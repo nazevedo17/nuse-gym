@@ -52,3 +52,15 @@ C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\obj\Debug\net5.0\Nuse.Core.dl
 C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\obj\Debug\net5.0\ref\Nuse.Core.dll
 C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\obj\Debug\net5.0\Nuse.Core.pdb
 C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\obj\Debug\net5.0\Core.genruntimeconfig.cache
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\MediatR.dll
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\Humanizer.dll
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\Nuse.Core.Contracts.dll
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\Nuse.Core.Contracts.pdb
