@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>Nuse.Core.Service</AssemblyName>
+    <RootNamespace>Nuse.Core.Service</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Data\Core.Data.csproj" />
+  </ItemGroup>
+
+</Project>
