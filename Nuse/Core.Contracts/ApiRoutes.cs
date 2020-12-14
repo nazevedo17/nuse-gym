@@ -18,6 +18,8 @@ namespace Nuse.Core.Contracts
 
             public const string GetAll = Controller + "/";
 
+            public const string AddCustomer = Controller + "/add";
+
             public const string EditCustomer = Controller + "/edit";
         }
 

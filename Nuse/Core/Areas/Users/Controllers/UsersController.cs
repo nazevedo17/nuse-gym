@@ -21,12 +21,12 @@ namespace Nuse.Core.Areas.Users.Controllers
         [AllowAnonymous]
         public IActionResult Authenticate([FromBody] AuthenticateUserRequest request)
         {
-            var result = Mediator.Send(request);
+            var result = Mediator.Send(request).Result;
 
             if (result != null)
                 return Ok(result);
 
-            return BadRequest();
+            return Unauthorized();
         }
     }
 }

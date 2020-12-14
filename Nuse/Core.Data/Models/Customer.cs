@@ -1,6 +1,7 @@
 ﻿using Core.Data.Models.Base;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Data.Models
 {
@@ -41,6 +42,9 @@ namespace Core.Data.Models
         public DateTimeOffset ChangedOn { get; set; }
 
         public Int64? ChangedBy { get; set; }
+
+        [NotMapped]
+        public String FullName => FirstName + " " + LastName;
 
 
         public virtual User User { get; set; }

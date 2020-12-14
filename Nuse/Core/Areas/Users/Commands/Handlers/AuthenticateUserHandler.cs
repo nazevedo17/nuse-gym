@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.IdentityModel.Tokens;
 using Nuse.Core.Areas.Users.Commands.Requests;
 using Nuse.Core.Areas.Users.Commands.Responses;
-using Nuse.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;

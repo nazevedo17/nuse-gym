@@ -23,7 +23,7 @@ namespace Nuse.Core.Areas.Customers.Commands.Handlers
         {
             var result = new GetAllCustomersResponse()
             {
-                Customers = customerRepository.GetAll().ToList()
+                Customers = customerRepository.GetAll().Where(x => (x.FirstName + " " + x.LastName).Contains(request.FilterName)).ToList()
             };
 
             return Task.FromResult(result);

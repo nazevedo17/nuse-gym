@@ -9,5 +9,6 @@ namespace Nuse.Core.Areas.Customers.Commands.Requests
 {
     public class GetAllCustomersRequest : IRequest<GetAllCustomersResponse>
     {
+        public string FilterName { get; set; }
     }
 }
