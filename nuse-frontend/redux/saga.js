@@ -3,12 +3,12 @@ import { actionTypes, failure, loading, loginSuccess } from './actions';
 
 function* loginSaga(data) {
   const { payload } = data;
-  
+
   yield put(loading(true));
   yield put(failure(false));
 
   try {
-    const res = yield fetch(process.env.NEXT_PUBLIC_API + '/nuse/login', {
+    const res = yield fetch(`${process.env.NEXT_PUBLIC_API}/users/login`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -16,13 +16,14 @@ function* loginSaga(data) {
       method: 'POST',
       body: JSON.stringify(payload),
     });
-    const data = yield res.json();
 
     if (res.ok) {
+      const data = yield res.json();
       yield put(loginSuccess(data));
     } else {
-      yield put(failure(data.message));
+      yield put(failure(true));
     }
+
   } catch (err) {
     yield put(failure(err));
   } finally {

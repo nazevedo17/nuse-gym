@@ -10,7 +10,7 @@ import * as yup from 'yup';
 import Cookies from 'js-cookie';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField, Button, CircularProgress } from '@material-ui/core';
+import { TextField, Button, CircularProgress, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -28,7 +28,7 @@ const LoginForm = ({ t }) => {
 
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading);
-  const errorMessage = useSelector((state) => state.error);
+  const error = useSelector((state) => state.error);
   const user = useSelector((state) => state.user);
 
   const LoginSchema = yup.object().shape({
@@ -51,7 +51,7 @@ const LoginForm = ({ t }) => {
 
   useEffect(() => {
     if (user && user.token) {
-      Cookies.set('token', user.token);
+      Cookies.set('token', user.token, { expires: 0.5 });
       router.push('/');
     }
   }, [user]);
@@ -93,7 +93,11 @@ const LoginForm = ({ t }) => {
       <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
         {!loading ? t('login:page-title') : <CircularProgress size={24} color="secondary" />}
       </Button>
-      {errorMessage && errorMessage}
+      {error && (
+        <Typography variant="subtitle2" align="center" color="error">
+          {t('login:error')}
+        </Typography>
+      )}
     </form>
   );
 };
