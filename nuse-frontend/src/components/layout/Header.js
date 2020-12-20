@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import { useRouter } from 'next/router';
 import { Router } from '../../i18n';
 
@@ -70,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = () => {
+const Header = ({ t }) => {
   const classes = useStyles();
 
   const router = useRouter();
@@ -105,17 +107,17 @@ const Header = () => {
           </A>
           <A href="/">
             <Button color={handleColor('/')} className={classes.hover}>
-              Home
+              {t('pages.home')}
             </Button>
           </A>
           <A href="/clients">
             <Button color={handleColor('/clients')} className={classes.hover}>
-              Clients
+              {t('pages.clients')}
             </Button>
           </A>
           <A href="/measurements">
             <Button color={handleColor('/measurements')} className={classes.hover}>
-              Measurements
+              {t('pages.measurements')}
             </Button>
           </A>
         </Toolbar>
@@ -140,6 +142,10 @@ const Header = () => {
       </Drawer>
     </>
   );
+};
+
+Header.propTypes = {
+  t: PropTypes.func.isRequired,
 };
 
 export default Header;

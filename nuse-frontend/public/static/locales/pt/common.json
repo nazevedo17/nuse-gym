@@ -1,5 +1,10 @@
 {
   "language": "Linguagem",
+  "pages": {
+    "home": "Home",
+    "clients": "Clientes",
+    "measurements": "Medições"
+  },
   "text-field": {
     "password": "Palavra-passe"
   },

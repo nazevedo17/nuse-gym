@@ -18,7 +18,7 @@ const Layout = ({ t, children }) => {
 
   return (
     <>
-      <Header />
+      <Header t={t} />
       <Container maxWidth="xl" className={classes.container}>
         {children}
         <Footer t={t} />
