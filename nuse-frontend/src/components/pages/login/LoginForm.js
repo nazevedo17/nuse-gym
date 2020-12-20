@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
+import { Router } from '../../../i18n';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../../../redux/actions';
@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
 
 const LoginForm = ({ t }) => {
   const classes = useStyles();
-  const router = useRouter();
 
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading);
@@ -52,7 +51,7 @@ const LoginForm = ({ t }) => {
   useEffect(() => {
     if (user && user.token) {
       Cookies.set('token', user.token, { expires: 0.5 });
-      router.push('/');
+      Router.push('/');
     }
   }, [user]);
 
