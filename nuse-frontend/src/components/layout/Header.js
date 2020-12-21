@@ -1,8 +1,23 @@
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import { useRouter } from 'next/router';
+import { Router } from '../../i18n';
+
+import A from '../../components/util/A';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { IconButton, Drawer, AppBar, Toolbar, List, Typography, ListItem, ListItemIcon } from '@material-ui/core';
+import {
+  IconButton,
+  Drawer,
+  AppBar,
+  Toolbar,
+  List,
+  Typography,
+  ListItem,
+  ListItemIcon,
+  Button,
+} from '@material-ui/core';
 import { Home, Group, ExitToApp } from '@material-ui/icons';
 
 import Cookies from 'js-cookie';
@@ -25,9 +40,11 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerContainer: {
     overflow: 'auto',
+    height: '100%',
   },
   title: {
     flexGrow: 1,
+    cursor: 'pointer',
   },
   listItemIcon: {
     width: '100%',
@@ -36,9 +53,26 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     margin: 'auto',
   },
+  ul: {
+    height: '100%',
+  },
+  logout: {
+    position: 'absolute',
+    bottom: 8,
+  },
+  li: {
+    '&:hover > div': {
+      color: theme.palette.secondary.main,
+    },
+  },
+  hover: {
+    '&:hover': {
+      color: theme.palette.secondary.main,
+    },
+  },
 }));
 
-const Header = () => {
+const Header = ({ t }) => {
   const classes = useStyles();
 
   const router = useRouter();
@@ -46,7 +80,7 @@ const Header = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    router.push('/login');
+    Router.push('/login');
   };
 
   useEffect(() => {
@@ -55,16 +89,37 @@ const Header = () => {
     }
   }, [Cookies.get('token')]);
 
+  const handleColor = (pathname) => {
+    if (router.pathname === pathname) {
+      return 'secondary';
+    }
+    return 'inherit';
+  };
+
   return (
     <>
       <AppBar position="sticky" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            Nuse Gym
-          </Typography>
-          <IconButton color="inherit" onClick={handleLogout}>
-            <ExitToApp />
-          </IconButton>
+          <A href="/">
+            <Typography variant="h6" className={classes.title}>
+              Nuse Gym
+            </Typography>
+          </A>
+          <A href="/">
+            <Button color={handleColor('/')} className={classes.hover}>
+              {t('pages.home')}
+            </Button>
+          </A>
+          <A href="/clients">
+            <Button color={handleColor('/clients')} className={classes.hover}>
+              {t('pages.clients')}
+            </Button>
+          </A>
+          <A href="/measurements">
+            <Button color={handleColor('/measurements')} className={classes.hover}>
+              {t('pages.measurements')}
+            </Button>
+          </A>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -76,15 +131,10 @@ const Header = () => {
       >
         <Toolbar />
         <div className={classes.drawerContainer}>
-          <List>
-            <ListItem button>
+          <List className={classes.ul}>
+            <ListItem button className={`${classes.logout} ${classes.li}`} onClick={handleLogout}>
               <ListItemIcon className={classes.listItemIcon}>
-                <Home color="secondary" className={classes.icon} />
-              </ListItemIcon>
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon className={classes.listItemIcon}>
-                <Group className={classes.icon} />
+                <ExitToApp className={classes.icon} />
               </ListItemIcon>
             </ListItem>
           </List>
@@ -92,6 +142,10 @@ const Header = () => {
       </Drawer>
     </>
   );
+};
+
+Header.propTypes = {
+  t: PropTypes.func.isRequired,
 };
 
 export default Header;

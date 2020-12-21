@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
+import { Router } from '../../../i18n';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../../../redux/actions';
@@ -10,7 +10,7 @@ import * as yup from 'yup';
 import Cookies from 'js-cookie';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField, Button, CircularProgress } from '@material-ui/core';
+import { TextField, Button, CircularProgress, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -24,11 +24,10 @@ const useStyles = makeStyles((theme) => ({
 
 const LoginForm = ({ t }) => {
   const classes = useStyles();
-  const router = useRouter();
 
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading);
-  const errorMessage = useSelector((state) => state.error);
+  const error = useSelector((state) => state.error);
   const user = useSelector((state) => state.user);
 
   const LoginSchema = yup.object().shape({
@@ -51,8 +50,8 @@ const LoginForm = ({ t }) => {
 
   useEffect(() => {
     if (user && user.token) {
-      Cookies.set('token', user.token);
-      router.push('/');
+      Cookies.set('token', user.token, { expires: 0.5 });
+      Router.push('/');
     }
   }, [user]);
 
@@ -93,7 +92,11 @@ const LoginForm = ({ t }) => {
       <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
         {!loading ? t('login:page-title') : <CircularProgress size={24} color="secondary" />}
       </Button>
-      {errorMessage && errorMessage}
+      {error && (
+        <Typography variant="subtitle2" align="center" color="error">
+          {t('login:error')}
+        </Typography>
+      )}
     </form>
   );
 };
