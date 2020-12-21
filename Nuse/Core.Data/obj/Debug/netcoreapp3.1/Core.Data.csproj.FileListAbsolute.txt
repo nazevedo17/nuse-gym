@@ -1,9 +1,9 @@
-C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Data\bin\Debug\netcoreapp3.1\Core.Data.deps.json
-C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Data\bin\Debug\netcoreapp3.1\Core.Data.dll
-C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Data\bin\Debug\netcoreapp3.1\Core.Data.pdb
 C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Data\obj\Debug\netcoreapp3.1\Core.Data.csprojAssemblyReference.cache
 C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Data\obj\Debug\netcoreapp3.1\Core.Data.AssemblyInfoInputs.cache
 C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Data\obj\Debug\netcoreapp3.1\Core.Data.AssemblyInfo.cs
 C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Data\obj\Debug\netcoreapp3.1\Core.Data.csproj.CoreCompileInputs.cache
-C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Data\obj\Debug\netcoreapp3.1\Core.Data.dll
-C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Data\obj\Debug\netcoreapp3.1\Core.Data.pdb
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Data\bin\Debug\netcoreapp3.1\Nuse.Core.Data.deps.json
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Data\bin\Debug\netcoreapp3.1\Nuse.Core.Data.dll
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Data\bin\Debug\netcoreapp3.1\Nuse.Core.Data.pdb
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Data\obj\Debug\netcoreapp3.1\Nuse.Core.Data.dll
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.Data\obj\Debug\netcoreapp3.1\Nuse.Core.Data.pdb

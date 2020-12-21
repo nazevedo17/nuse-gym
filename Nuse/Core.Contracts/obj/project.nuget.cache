@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "SkvrXlrBX7vQuWLZEw+RE1N3g8EdH7lzOwObgcQpr21kanCBVLaDbZ0eqU69Ps5vBbiA8MIXT+op7tpna4h37A==",
+  "dgSpecHash": "9cDA0QfoM+Vn879DfYN1okcbzP7sd6ZU8M6jRPhGzkFvalXB7RA2yJf8D0CqC26rTs8zYeov/eecFz9968+rsw==",
   "success": true,
   "projectFilePath": "C:\\Users\\sergi\\Documents\\GitHub\\nuse-gym\\Nuse\\Core.Contracts\\Core.Contracts.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\sergi\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
+  ],
   "logs": []
 }

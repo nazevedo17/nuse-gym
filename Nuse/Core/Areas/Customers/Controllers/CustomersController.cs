@@ -45,7 +45,7 @@ namespace Nuse.Core.Areas.Customers.Controllers
         [Authorize]
         public IActionResult EditCustomer([FromBody] GetAllCustomersRequest request)
         {
-            var result = Mediator.Send(request);
+            var result = Mediator.Send(request).Result;
 
             if (result != null)
                 return Ok(result);

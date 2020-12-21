@@ -11,6 +11,9 @@ namespace Core.Data.Models
         public Int64 Id { get; set; }
 
         [Required]
+        public Boolean Active { get; set; }
+
+        [Required]
         [StringLength(Constants.TinyLength, MinimumLength = Constants.MinimumLength)]
         public String Username { get; set; }
 

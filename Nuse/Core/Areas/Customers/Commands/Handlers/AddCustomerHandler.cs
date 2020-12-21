@@ -24,6 +24,7 @@ namespace Nuse.Core.Areas.Customers.Commands.Handlers
         {
             var newCustomer = new Customer()
             {
+                Active = true,
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Email = request.Email,
@@ -37,7 +38,7 @@ namespace Nuse.Core.Areas.Customers.Commands.Handlers
 
             return new AddCustomerResponse()
             {
-                FullName = newCustomer.FullName
+               
             };
         }
     }

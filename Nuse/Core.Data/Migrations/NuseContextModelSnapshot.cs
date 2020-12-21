@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Core.Data.Migrations
+namespace Nuse.Core.Data.Migrations
 {
     [DbContext(typeof(NuseContext))]
     partial class NuseContextModelSnapshot : ModelSnapshot
@@ -25,6 +25,9 @@ namespace Core.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -76,9 +79,10 @@ namespace Core.Data.Migrations
                         new
                         {
                             Id = 1L,
+                            Active = false,
                             BirthDate = new DateTimeOffset(new DateTime(1999, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ChangedOn = new DateTimeOffset(new DateTime(2020, 12, 13, 23, 34, 31, 775, DateTimeKind.Unspecified).AddTicks(5450), new TimeSpan(0, 0, 0, 0, 0)),
-                            CreatedOn = new DateTimeOffset(new DateTime(2020, 12, 13, 23, 34, 31, 772, DateTimeKind.Unspecified).AddTicks(8573), new TimeSpan(0, 0, 0, 0, 0)),
+                            ChangedOn = new DateTimeOffset(new DateTime(2020, 12, 20, 17, 17, 26, 873, DateTimeKind.Unspecified).AddTicks(3580), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedOn = new DateTimeOffset(new DateTime(2020, 12, 20, 17, 17, 26, 870, DateTimeKind.Unspecified).AddTicks(6837), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "a18478@alunos.ipca.pt",
                             FirstName = "Sérgio Miguel",
                             Gender = (byte)1,
@@ -115,6 +119,9 @@ namespace Core.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
 
                     b.Property<long?>("ChangedBy")
                         .HasColumnType("bigint");
@@ -155,8 +162,9 @@ namespace Core.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            ChangedOn = new DateTimeOffset(new DateTime(2020, 12, 13, 23, 34, 31, 777, DateTimeKind.Unspecified).AddTicks(1529), new TimeSpan(0, 0, 0, 0, 0)),
-                            CreatedOn = new DateTimeOffset(new DateTime(2020, 12, 13, 23, 34, 31, 777, DateTimeKind.Unspecified).AddTicks(993), new TimeSpan(0, 0, 0, 0, 0)),
+                            Active = false,
+                            ChangedOn = new DateTimeOffset(new DateTime(2020, 12, 20, 17, 17, 26, 875, DateTimeKind.Unspecified).AddTicks(297), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedOn = new DateTimeOffset(new DateTime(2020, 12, 20, 17, 17, 26, 874, DateTimeKind.Unspecified).AddTicks(9743), new TimeSpan(0, 0, 0, 0, 0)),
                             CustomerId = 1L,
                             Password = "9999",
                             Username = "smo"

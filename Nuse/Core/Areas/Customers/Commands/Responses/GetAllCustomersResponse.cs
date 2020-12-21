@@ -1,4 +1,5 @@
 ﻿using Core.Data.Models;
+using Nuse.Core.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,6 @@ namespace Nuse.Core.Areas.Customers.Commands.Responses
 {
     public class GetAllCustomersResponse
     {
-        public ICollection<Customer> Customers { get; set; }
+        public ICollection<CustomerDTO> Customers { get; set; }
     }
 }

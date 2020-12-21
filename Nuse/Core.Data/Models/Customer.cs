@@ -9,6 +9,9 @@ namespace Core.Data.Models
     {
         public Int64 Id { get; set; }
 
+        [Required]        
+        public Boolean Active { get; set; }
+
         [Required]
         [StringLength(Constants.MediumLength)]
         public String FirstName { get; set; }
