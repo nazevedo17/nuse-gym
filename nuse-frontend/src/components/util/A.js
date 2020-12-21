@@ -1,21 +1,8 @@
 import PropTypes from 'prop-types';
 
-import { useRouter } from 'next/router';
+import { Link } from '../../i18n';
 
-const A = ({ href, children }) => {
-  const router = useRouter();
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    router.push(href);
-  };
-
-  return (
-    <a href={href} onClick={handleClick}>
-      {children}
-    </a>
-  );
-};
+const A = ({ href, children }) => <Link href={href}>{children}</Link>;
 
 A.propTypes = {
   href: PropTypes.string.isRequired,

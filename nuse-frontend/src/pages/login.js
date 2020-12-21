@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'src/i18n';
+import { Router } from '../i18n';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Avatar, Paper, Typography } from '@material-ui/core';
@@ -9,6 +11,8 @@ import Footer from 'src/components/layout/Footer';
 import PageTitle from 'src/components/util/PageTitle';
 import LoginForm from 'src/components/pages/login/LoginForm';
 
+import Cookies from 'js-cookie';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -16,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   image: {
     backgroundImage: 'url(https://source.unsplash.com/random?crossfit)',
     backgroundRepeat: 'no-repeat',
-    backgroundColor: theme.palette.primary,
+    backgroundColor: theme.palette.primary.main,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
@@ -34,6 +38,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = ({ t }) => {
   const classes = useStyles();
+
+  useEffect(() => {
+    if (Cookies.get('token')) {
+      Router.push('/');
+    }
+  }, [Cookies.get('token')]);
+
   return (
     <>
       <PageTitle title={t('login:page-title')} />

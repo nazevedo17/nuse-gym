@@ -8,52 +8,59 @@ import PageTitle from 'src/components/util/PageTitle';
 import Layout from 'src/components/layout';
 // import Img from 'components/util/Img';
 
-const Home = ({ t }) => (
-  <>
-    <PageTitle title={t('home:page-title')} />
-    <Layout t={t}>
-      <section>
-        <Box component="article" p={2}>
-          <Typography variant="h1" align="center">
-            Home Page
-          </Typography>
-          <Typography variant="h1" align="center">
-            Home Page
-          </Typography>
-          <Typography variant="h1" align="center">
-            Home Page
-          </Typography>
-          <Typography variant="h1" align="center">
-            Home Page
-          </Typography>
-          <Typography variant="h1" align="center">
-            Home Page
-          </Typography>
-          <Typography variant="h1" align="center">
-            Home Page
-          </Typography>
-          <Typography variant="h1" align="center">
-            Home Page
-          </Typography>
-          <Typography variant="h1" align="center">
-            Home Page
-          </Typography>
-          <Typography variant="h1" align="center">
-            Home Page
-          </Typography>
-          <Typography variant="h1" align="center">
-            Home Page
-          </Typography>
-        </Box>
-        {/* <article>
+import { useSelector } from 'react-redux';
+
+const Home = ({ t }) => {
+  const user = useSelector((state) => state.user);
+  console.log(user);
+
+  return (
+    <>
+      <PageTitle title={t('home:page-title')} />
+      <Layout t={t}>
+        <section>
+          <Box component="article" p={2}>
+            <Typography variant="h1" align="center">
+              Home Page
+            </Typography>
+            <Typography variant="h1" align="center">
+              Home Page
+            </Typography>
+            <Typography variant="h1" align="center">
+              Home Page
+            </Typography>
+            <Typography variant="h1" align="center">
+              Home Page
+            </Typography>
+            <Typography variant="h1" align="center">
+              Home Page
+            </Typography>
+            <Typography variant="h1" align="center">
+              Home Page
+            </Typography>
+            <Typography variant="h1" align="center">
+              Home Page
+            </Typography>
+            <Typography variant="h1" align="center">
+              Home Page
+            </Typography>
+            <Typography variant="h1" align="center">
+              Home Page
+            </Typography>
+            <Typography variant="h1" align="center">
+              Home Page
+            </Typography>
+          </Box>
+          {/* <article>
               <A href="/login">Go to Login</A>
         <p>{process.env.NEXT_PUBLIC_TEST}</p>
         <Img src="/images/test.jpg" alt="img-test" width="100" height="100" />
       </article> */}
-      </section>
-    </Layout>
-  </>
-);
+        </section>
+      </Layout>
+    </>
+  );
+};
 
 // This gets called on every request
 // export async function getServerSideProps() {

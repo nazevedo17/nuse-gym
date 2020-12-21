@@ -1,3 +1,7 @@
 body {
   margin: 0;
 }
+
+#nprogress .bar {
+  background: #D32822 !important;
+}
