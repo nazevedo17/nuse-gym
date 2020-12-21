@@ -1,15 +1,41 @@
-﻿using System;
+﻿using Core.Data.Models.Base;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Core.Data.Models
 {
-    public class User
+    public class User : IAuditable
     {
         public Int64 Id { get; set; }
-        public Int64 CostumerId { get; set; }
+
+        [Required]
+        public Boolean Active { get; set; }
+
+        [Required]
+        [StringLength(Constants.TinyLength, MinimumLength = Constants.MinimumLength)]
         public String Username { get; set; }
+
+        [Required]
+        [StringLength(Constants.SmallLength)]
         public String Password { get; set; }
-        public String Token { get; set; }
+
+        [Required]
+        public DateTimeOffset CreatedOn { get; set; }
+
+        public Int64? CreatedBy { get; set; }
+
+        [Required]
+        public DateTimeOffset ChangedOn { get; set; }
+
+        public Int64? ChangedBy { get; set; }
+
+        [Required]
+        public Int64 CustomerId { get; set; }
+
+
+        public virtual Customer Customer { get; set; }
+        public virtual IList<Login> Logins { get; set; }
     }
 }

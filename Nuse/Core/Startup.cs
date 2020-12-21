@@ -1,4 +1,7 @@
+using AutoMapper;
 using Core.Data.Contexts;
+using Core.Data.Repositories;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,6 +17,7 @@ using Nuse.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,12 +35,20 @@ namespace Nuse.Core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddCors();
 
             services.AddDbContext<NuseContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("NuseConnection"));
             });
+
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            //services.AddMediatR(typeof(Startup));
+            services.AddMediatR(Assembly.GetExecutingAssembly());
 
             var key = Encoding.ASCII.GetBytes(Settings.Secret);
 

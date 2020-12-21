@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Nuse.Core.DTOs/1.0.0": {
+        "runtime": {
+          "Nuse.Core.DTOs.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Nuse.Core.DTOs/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

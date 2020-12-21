@@ -5710,7 +5710,7 @@
     "version": "1.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\sergi\\Documents\\GitHub\\nuse-gym\\Nuse\\Core.Data\\Core.Data.csproj",
-      "projectName": "Core.Data",
+      "projectName": "Nuse.Core.Data",
       "projectPath": "C:\\Users\\sergi\\Documents\\GitHub\\nuse-gym\\Nuse\\Core.Data\\Core.Data.csproj",
       "packagesPath": "C:\\Users\\sergi\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\sergi\\Documents\\GitHub\\nuse-gym\\Nuse\\Core.Data\\obj\\",
@@ -5767,12 +5767,18 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.10, 3.1.10]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
