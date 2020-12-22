@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Data.Models;
 using Core.Data.Repositories;
 using MediatR;
 using Nuse.Core.Areas.Customers.Commands.Requests;

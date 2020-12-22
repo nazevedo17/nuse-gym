@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AhFf2pCv2/4XxnhE6ZC64lOGmL+OEqQFi9v4f6Owzl7MBhxiWqsTzG4Y9WsfUJgPZLH5taMLbZM5bMsxd3RqHg==",
+  "dgSpecHash": "vKiPb4btpuwl+TQYMlAt+30vseh4FLxbbctrkkwdO8mqTMLodga/3HVl/ZhsDpK/H+hZ4dnOWtpTBtofxY4V/A==",
   "success": true,
   "projectFilePath": "C:\\Users\\sergi\\Documents\\GitHub\\nuse-gym\\Nuse\\Core.DTOs\\Core.DTOs.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\sergi\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }
