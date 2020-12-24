@@ -1,9 +1,0 @@
-C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.DTOs\bin\Debug\netcoreapp3.1\Nuse.Core.DTOs.deps.json
-C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.DTOs\bin\Debug\netcoreapp3.1\Nuse.Core.DTOs.dll
-C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.DTOs\bin\Debug\netcoreapp3.1\Nuse.Core.DTOs.pdb
-C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.DTOs\obj\Debug\netcoreapp3.1\Core.DTOs.csprojAssemblyReference.cache
-C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.DTOs\obj\Debug\netcoreapp3.1\Core.DTOs.AssemblyInfoInputs.cache
-C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.DTOs\obj\Debug\netcoreapp3.1\Core.DTOs.AssemblyInfo.cs
-C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.DTOs\obj\Debug\netcoreapp3.1\Core.DTOs.csproj.CoreCompileInputs.cache
-C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.DTOs\obj\Debug\netcoreapp3.1\Nuse.Core.DTOs.dll
-C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core.DTOs\obj\Debug\netcoreapp3.1\Nuse.Core.DTOs.pdb

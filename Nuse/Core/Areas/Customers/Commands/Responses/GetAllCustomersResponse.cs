@@ -1,9 +1,5 @@
-﻿using Core.Data.Models;
-using Nuse.Core.DTOs;
-using System;
+﻿using Nuse.Core.DTOs;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Nuse.Core.Areas.Customers.Commands.Responses
 {

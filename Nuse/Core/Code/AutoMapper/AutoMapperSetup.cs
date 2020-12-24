@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
-using Core.Data.Models;
 using Nuse.Core.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Nuse.Core.Models;
 
 namespace Nuse.Core.Code.AutoMapper
 {
