@@ -1,13 +1,10 @@
-﻿using Core.Data.Models;
-using System;
+﻿using Nuse.Core.DTOs;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Nuse.Core.Areas.Customers.Commands.Responses
 {
     public class GetAllCustomersResponse
     {
-        public ICollection<Customer> Customers { get; set; }
+        public ICollection<CustomerDTO> Customers { get; set; }
     }
 }

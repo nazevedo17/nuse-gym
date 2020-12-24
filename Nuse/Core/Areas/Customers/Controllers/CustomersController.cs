@@ -5,8 +5,6 @@ using Nuse.Core.Areas.Customers.Commands.Requests;
 using Nuse.Core.Code.Controllers;
 using Nuse.Core.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Nuse.Core.Areas.Customers.Controllers
@@ -19,9 +17,9 @@ namespace Nuse.Core.Areas.Customers.Controllers
 
         [HttpGet(ApiRoutes.Customers.GetAll)]
         [Authorize]
-        public IActionResult GetAllCustomers([FromBody] GetAllCustomersRequest request)
+        public async Task<IActionResult> GetAllCustomers([FromBody] GetAllCustomersRequest request)
         {
-            var result = Mediator.Send(request).Result;
+            var result = await Mediator.Send(request);
 
             if (result != null)
                 return Ok(result);
@@ -31,9 +29,9 @@ namespace Nuse.Core.Areas.Customers.Controllers
 
         [HttpPost(ApiRoutes.Customers.AddCustomer)]
         [Authorize]
-        public IActionResult AddCustomer([FromBody] AddCustomerRequest request)
+        public async Task<IActionResult> AddCustomer([FromBody] AddCustomerRequest request)
         {
-            var result =  Mediator.Send(request).Result;
+            var result = await Mediator.Send(request);
 
             if (result != null)
                 return Created(new Uri(ApiRoutes.Customers.AddCustomer, UriKind.Relative),result);
@@ -43,9 +41,9 @@ namespace Nuse.Core.Areas.Customers.Controllers
 
         [HttpPut(ApiRoutes.Customers.EditCustomer)]
         [Authorize]
-        public IActionResult EditCustomer([FromBody] GetAllCustomersRequest request)
+        public async Task<IActionResult> EditCustomer([FromBody] EditCustomerRequest request)
         {
-            var result = Mediator.Send(request);
+            var result = await Mediator.Send(request);
 
             if (result != null)
                 return Ok(result);

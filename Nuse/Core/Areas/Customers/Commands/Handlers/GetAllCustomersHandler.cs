@@ -1,8 +1,10 @@
-﻿using Core.Data.Repositories;
+﻿using AutoMapper;
+using Core.Data.Repositories;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Nuse.Core.Areas.Customers.Commands.Requests;
 using Nuse.Core.Areas.Customers.Commands.Responses;
-using System;
+using Nuse.Core.DTOs;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -13,20 +15,20 @@ namespace Nuse.Core.Areas.Customers.Commands.Handlers
     public class GetAllCustomersHandler : IRequestHandler<GetAllCustomersRequest, GetAllCustomersResponse>
     {
         private readonly ICustomerRepository customerRepository;
+        private readonly IMapper mapper;
 
-        public GetAllCustomersHandler(ICustomerRepository customerRepository)
+        public GetAllCustomersHandler(ICustomerRepository customerRepository, IMapper mapper)
         {
             this.customerRepository = customerRepository;
+            this.mapper = mapper;
         }
 
-        public Task<GetAllCustomersResponse> Handle(GetAllCustomersRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllCustomersResponse> Handle(GetAllCustomersRequest request, CancellationToken cancellationToken)
         {
-            var result = new GetAllCustomersResponse()
+            return new GetAllCustomersResponse()
             {
-                Customers = customerRepository.GetAll().Where(x => (x.FirstName + " " + x.LastName).Contains(request.FilterName)).ToList()
+                Customers =  mapper.Map<ICollection<CustomerDTO>>(await customerRepository.GetAll().Where(x => (x.FirstName + " " + x.LastName).Contains(request.FilterName)).ToListAsync())
             };
-
-            return Task.FromResult(result);
         }
     }
 }
