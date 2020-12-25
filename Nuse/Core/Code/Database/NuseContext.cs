@@ -14,12 +14,15 @@ namespace Nuse.Core.Code.Database
         public DbSet<Customer> Customers { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Login> Logins { get; set; }
+        public DbSet<Measurement>  Measurements { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Customer>().HasIndex(x => x.Email).IsUnique();
 
             modelBuilder.Entity<User>().HasIndex(x => x.Username).IsUnique();
+
+            modelBuilder.Entity<Measurement>().HasIndex(x => x.CustomerId).IsUnique();
 
             modelBuilder.Seed();
         }
