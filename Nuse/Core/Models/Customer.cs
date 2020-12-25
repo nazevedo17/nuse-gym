@@ -1,5 +1,6 @@
 ﻿using Nuse.Core.Models.Base;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,7 +8,7 @@ namespace Nuse.Core.Models
 {
     public class Customer : IAuditable
     {
-        public Int64 Id { get; set; }
+        public Int64 Id { get; init; }
 
         [Required]        
         public Boolean Active { get; set; }
@@ -51,5 +52,6 @@ namespace Nuse.Core.Models
 
 
         public virtual User User { get; set; }
+        public virtual ICollection<Measurement> Measurements { get; set; }
     }
 }

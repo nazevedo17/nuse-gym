@@ -5,7 +5,7 @@ namespace Nuse.Core.Models
 {
     public class Login
     {
-        public Int64 Id { get; set; }
+        public Int64 Id { get; init; }
 
         [Required]
         public DateTimeOffset LoginDate { get; set; }

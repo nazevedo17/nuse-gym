@@ -7,7 +7,7 @@ namespace Nuse.Core.Models
 {
     public class User : IAuditable
     {
-        public Int64 Id { get; set; }
+        public Int64 Id { get; init; }
 
         [Required]
         public Boolean Active { get; set; }
