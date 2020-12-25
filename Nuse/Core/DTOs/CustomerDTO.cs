@@ -4,7 +4,7 @@ namespace Nuse.Core.DTOs
 {
     public class CustomerDTO
     {
-        public Int64 Id { get; set; }
+        public Int64 Id { get; init; }
 
         public Boolean Active { get; set; }
 
@@ -14,9 +14,9 @@ namespace Nuse.Core.DTOs
 
         public String Email { get; set; }
 
-        public String? PhoneNumber { get; set; }
+        public String PhoneNumber { get; set; }
 
-        public String? Address { get; set; }
+        public String Address { get; set; }
 
         public Byte Gender { get; set; }
 

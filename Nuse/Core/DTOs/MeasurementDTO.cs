@@ -1,17 +1,16 @@
-﻿using Nuse.Core.Models.Base;
-using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Nuse.Core.Models
+namespace Nuse.Core.DTOs
 {
-    public class Measurement : IAuditable
+    public class MeasurementDTO
     {
         public Int64 Id { get; init; }
 
-        [Required]
         public Int64 CustomerId { get; set; }
 
-        [Required]
         public DateTimeOffset MeasurementDate { get; set; }
 
         public Double? BMI { get; set; }
@@ -70,17 +69,12 @@ namespace Nuse.Core.Models
 
         public Double? LeftAnkle { get; set; }
 
-        [Required]
         public DateTimeOffset CreatedOn { get; set; }
 
         public Int64? CreatedBy { get; set; }
 
-        [Required]
         public DateTimeOffset ChangedOn { get; set; }
 
         public Int64? ChangedBy { get; set; }
-
-
-        public virtual Customer Customer { get; set; }
     }
 }

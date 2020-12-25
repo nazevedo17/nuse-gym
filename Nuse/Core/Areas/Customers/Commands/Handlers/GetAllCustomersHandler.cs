@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Core.Data.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Nuse.Core.Areas.Customers.Commands.Requests;
 using Nuse.Core.Areas.Customers.Commands.Responses;
 using Nuse.Core.DTOs;
+using Nuse.Core.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

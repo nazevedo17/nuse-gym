@@ -26,10 +26,13 @@ namespace Nuse.Core.Models
         [EmailAddress]
         public String Email { get; set; }
 
+        [Required]
         [Phone]
-        public String? PhoneNumber { get; set; }
+        public String PhoneNumber { get; set; }
 
-        public String? Address { get; set; }
+        [Required]
+        [StringLength(Constants.ExtraLength)]
+        public String Address { get; set; }
 
         [Required]
         public Byte Gender { get; set; }
@@ -46,9 +49,6 @@ namespace Nuse.Core.Models
         public DateTimeOffset ChangedOn { get; set; }
 
         public Int64? ChangedBy { get; set; }
-
-        [NotMapped]
-        public String FullName => FirstName + " " + LastName;
 
 
         public virtual User User { get; set; }

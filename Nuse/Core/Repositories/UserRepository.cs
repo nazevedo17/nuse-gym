@@ -4,7 +4,7 @@ using Nuse.Core.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace Core.Data.Repositories
+namespace Nuse.Core.Repositories
 {
     public class UserRepository : Repository<User>, IUserRepository
     {

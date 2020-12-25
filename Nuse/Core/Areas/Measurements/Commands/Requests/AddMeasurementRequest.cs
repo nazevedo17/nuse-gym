@@ -1,17 +1,13 @@
-﻿using Nuse.Core.Models.Base;
+﻿using MediatR;
+using Nuse.Core.Areas.Measurements.Commands.Responses;
 using System;
-using System.ComponentModel.DataAnnotations;
 
-namespace Nuse.Core.Models
+namespace Nuse.Core.Areas.Measurements.Commands.Requests
 {
-    public class Measurement : IAuditable
+    public class AddMeasurementRequest : IRequest<AddMeasurementResponse>
     {
-        public Int64 Id { get; init; }
-
-        [Required]
         public Int64 CustomerId { get; set; }
 
-        [Required]
         public DateTimeOffset MeasurementDate { get; set; }
 
         public Double? BMI { get; set; }
@@ -69,18 +65,5 @@ namespace Nuse.Core.Models
         public Double? RightAnkle { get; set; }
 
         public Double? LeftAnkle { get; set; }
-
-        [Required]
-        public DateTimeOffset CreatedOn { get; set; }
-
-        public Int64? CreatedBy { get; set; }
-
-        [Required]
-        public DateTimeOffset ChangedOn { get; set; }
-
-        public Int64? ChangedBy { get; set; }
-
-
-        public virtual Customer Customer { get; set; }
     }
 }

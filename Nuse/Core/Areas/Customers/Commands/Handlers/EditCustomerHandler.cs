@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Core.Data.Repositories;
 using MediatR;
 using Nuse.Core.Areas.Customers.Commands.Requests;
 using Nuse.Core.Areas.Customers.Commands.Responses;
 using Nuse.Core.DTOs;
 using Nuse.Core.Models;
+using Nuse.Core.Repositories;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -36,7 +36,7 @@ namespace Nuse.Core.Areas.Customers.Commands.Handlers
 
             customer = await customerRepository.UpdateAsync(customer);
 
-            return new EditCustomerResponse()
+            return new EditCustomerResponse
             {
                 Customer = mapper.Map<Customer, CustomerDTO>(customer)
             };

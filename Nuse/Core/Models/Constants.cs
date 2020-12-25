@@ -14,6 +14,8 @@ namespace Nuse.Core.Models
 
         public const Int32 LargeLength = 64;
 
+        public const Int32 ExtraLength = 128;
+
         public const Int32 MinimumLength = 2;
     }
 }

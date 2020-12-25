@@ -10,8 +10,8 @@ using Nuse.Core.Code.Database;
 namespace Nuse.Core.Migrations
 {
     [DbContext(typeof(NuseContext))]
-    [Migration("20201225000131_IntialCreate")]
-    partial class IntialCreate
+    [Migration("20201225151910_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,7 +32,9 @@ namespace Nuse.Core.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<DateTimeOffset>("BirthDate")
                         .HasColumnType("datetimeoffset");
@@ -68,6 +70,7 @@ namespace Nuse.Core.Migrations
                         .HasColumnType("nvarchar(32)");
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -82,13 +85,15 @@ namespace Nuse.Core.Migrations
                         {
                             Id = 1L,
                             Active = false,
+                            Address = "",
                             BirthDate = new DateTimeOffset(new DateTime(1999, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ChangedOn = new DateTimeOffset(new DateTime(2020, 12, 25, 0, 1, 30, 999, DateTimeKind.Unspecified).AddTicks(9702), new TimeSpan(0, 0, 0, 0, 0)),
-                            CreatedOn = new DateTimeOffset(new DateTime(2020, 12, 25, 0, 1, 30, 997, DateTimeKind.Unspecified).AddTicks(9641), new TimeSpan(0, 0, 0, 0, 0)),
+                            ChangedOn = new DateTimeOffset(new DateTime(2020, 12, 25, 15, 19, 10, 261, DateTimeKind.Unspecified).AddTicks(7129), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedOn = new DateTimeOffset(new DateTime(2020, 12, 25, 15, 19, 10, 259, DateTimeKind.Unspecified).AddTicks(7452), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "a18478@alunos.ipca.pt",
                             FirstName = "Sérgio Miguel",
                             Gender = (byte)1,
-                            LastName = "Machado Oliveira"
+                            LastName = "Machado Oliveira",
+                            PhoneNumber = ""
                         });
                 });
 
@@ -137,8 +142,20 @@ namespace Nuse.Core.Migrations
                     b.Property<double?>("Buttocks")
                         .HasColumnType("float");
 
+                    b.Property<long?>("ChangedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset>("ChangedOn")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<double?>("Chest")
                         .HasColumnType("float");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<long>("CustomerId")
                         .HasColumnType("bigint");
@@ -214,8 +231,7 @@ namespace Nuse.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId")
-                        .IsUnique();
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Measurements");
                 });
@@ -270,8 +286,8 @@ namespace Nuse.Core.Migrations
                         {
                             Id = 1L,
                             Active = false,
-                            ChangedOn = new DateTimeOffset(new DateTime(2020, 12, 25, 0, 1, 31, 0, DateTimeKind.Unspecified).AddTicks(9373), new TimeSpan(0, 0, 0, 0, 0)),
-                            CreatedOn = new DateTimeOffset(new DateTime(2020, 12, 25, 0, 1, 31, 0, DateTimeKind.Unspecified).AddTicks(9112), new TimeSpan(0, 0, 0, 0, 0)),
+                            ChangedOn = new DateTimeOffset(new DateTime(2020, 12, 25, 15, 19, 10, 262, DateTimeKind.Unspecified).AddTicks(6965), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedOn = new DateTimeOffset(new DateTime(2020, 12, 25, 15, 19, 10, 262, DateTimeKind.Unspecified).AddTicks(6686), new TimeSpan(0, 0, 0, 0, 0)),
                             CustomerId = 1L,
                             Password = "9999",
                             Username = "smo"

@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Core.Data.Repositories
+namespace Nuse.Core.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, new()
     {
@@ -63,6 +63,26 @@ namespace Core.Data.Repositories
             catch (Exception ex)
             {
                 throw new Exception($"{nameof(entity)} could not be updated: {ex.Message}");
+            }
+        }
+
+        public async Task<TEntity> DeleteAsync(TEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException($"{nameof(entity)} entity must not be null");
+            }
+
+            try
+            {
+                _context.Remove(entity);
+                await SaveAsync();
+
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{nameof(entity)} could not be deleted: {ex.Message}");
             }
         }
 
