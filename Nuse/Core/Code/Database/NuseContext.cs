@@ -22,8 +22,6 @@ namespace Nuse.Core.Code.Database
 
             modelBuilder.Entity<User>().HasIndex(x => x.Username).IsUnique();
 
-            modelBuilder.Entity<Measurement>().HasIndex(x => x.CustomerId).IsUnique();
-
             modelBuilder.Seed();
         }
     }
@@ -39,6 +37,8 @@ namespace Nuse.Core.Code.Database
                     FirstName = "Sérgio Miguel",
                     LastName = "Machado Oliveira",
                     Email = "a18478@alunos.ipca.pt",
+                    Address = "",
+                    PhoneNumber = "",
                     Gender = 1,
                     BirthDate = new DateTimeOffset(1999, 2, 7, 0, 0, 0, TimeSpan.FromSeconds(0)),
                     CreatedOn = DateTimeOffset.Now,

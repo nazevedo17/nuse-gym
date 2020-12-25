@@ -1,8 +1,8 @@
-﻿using Core.Data.Repositories;
-using MediatR;
+﻿using MediatR;
 using Nuse.Core.Areas.Users.Commands.Requests;
 using Nuse.Core.Areas.Users.Commands.Responses;
 using Nuse.Core.Code.Services;
+using Nuse.Core.Repositories;
 using System.Threading;
 using System.Threading.Tasks;
 

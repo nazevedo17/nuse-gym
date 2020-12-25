@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Nuse.Core.Migrations
 {
-    public partial class IntialCreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,8 +17,8 @@ namespace Nuse.Core.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Gender = table.Column<byte>(type: "tinyint", nullable: false),
                     BirthDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
@@ -66,7 +66,11 @@ namespace Nuse.Core.Migrations
                     RightCalf = table.Column<double>(type: "float", nullable: true),
                     LeftCalf = table.Column<double>(type: "float", nullable: true),
                     RightAnkle = table.Column<double>(type: "float", nullable: true),
-                    LeftAnkle = table.Column<double>(type: "float", nullable: true)
+                    LeftAnkle = table.Column<double>(type: "float", nullable: true),
+                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: true),
+                    ChangedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    ChangedBy = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -129,12 +133,12 @@ namespace Nuse.Core.Migrations
             migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "Id", "Active", "Address", "BirthDate", "ChangedBy", "ChangedOn", "CreatedBy", "CreatedOn", "Email", "FirstName", "Gender", "LastName", "PhoneNumber" },
-                values: new object[] { 1L, false, null, new DateTimeOffset(new DateTime(1999, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, new DateTimeOffset(new DateTime(2020, 12, 25, 0, 1, 30, 999, DateTimeKind.Unspecified).AddTicks(9702), new TimeSpan(0, 0, 0, 0, 0)), null, new DateTimeOffset(new DateTime(2020, 12, 25, 0, 1, 30, 997, DateTimeKind.Unspecified).AddTicks(9641), new TimeSpan(0, 0, 0, 0, 0)), "a18478@alunos.ipca.pt", "Sérgio Miguel", (byte)1, "Machado Oliveira", null });
+                values: new object[] { 1L, false, "", new DateTimeOffset(new DateTime(1999, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, new DateTimeOffset(new DateTime(2020, 12, 25, 15, 19, 10, 261, DateTimeKind.Unspecified).AddTicks(7129), new TimeSpan(0, 0, 0, 0, 0)), null, new DateTimeOffset(new DateTime(2020, 12, 25, 15, 19, 10, 259, DateTimeKind.Unspecified).AddTicks(7452), new TimeSpan(0, 0, 0, 0, 0)), "a18478@alunos.ipca.pt", "Sérgio Miguel", (byte)1, "Machado Oliveira", "" });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Active", "ChangedBy", "ChangedOn", "CreatedBy", "CreatedOn", "CustomerId", "Password", "Username" },
-                values: new object[] { 1L, false, null, new DateTimeOffset(new DateTime(2020, 12, 25, 0, 1, 31, 0, DateTimeKind.Unspecified).AddTicks(9373), new TimeSpan(0, 0, 0, 0, 0)), null, new DateTimeOffset(new DateTime(2020, 12, 25, 0, 1, 31, 0, DateTimeKind.Unspecified).AddTicks(9112), new TimeSpan(0, 0, 0, 0, 0)), 1L, "9999", "smo" });
+                values: new object[] { 1L, false, null, new DateTimeOffset(new DateTime(2020, 12, 25, 15, 19, 10, 262, DateTimeKind.Unspecified).AddTicks(6965), new TimeSpan(0, 0, 0, 0, 0)), null, new DateTimeOffset(new DateTime(2020, 12, 25, 15, 19, 10, 262, DateTimeKind.Unspecified).AddTicks(6686), new TimeSpan(0, 0, 0, 0, 0)), 1L, "9999", "smo" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_Email",
@@ -150,8 +154,7 @@ namespace Nuse.Core.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Measurements_CustomerId",
                 table: "Measurements",
-                column: "CustomerId",
-                unique: true);
+                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_CustomerId",

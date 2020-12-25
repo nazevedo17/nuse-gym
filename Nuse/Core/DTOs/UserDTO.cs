@@ -4,11 +4,11 @@ namespace Nuse.Core.DTOs
 {
     public class UserDTO
     {
-        public Int64 Id { get; set; }
+        public Int64 Id { get; init; }
 
         public Boolean Active { get; set; }
 
-        public String Username { get; set; }
+        public String Username { get; init; }
 
         public DateTimeOffset CreatedOn { get; set; }
 

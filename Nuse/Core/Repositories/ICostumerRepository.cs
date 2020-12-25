@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Core.Data.Repositories
+namespace Nuse.Core.Repositories
 {
     public interface ICustomerRepository : IRepository<Customer>
     {

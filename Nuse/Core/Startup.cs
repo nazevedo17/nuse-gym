@@ -1,5 +1,4 @@
 using AutoMapper;
-using Core.Data.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using Nuse.Core.Code.Auth;
 using Nuse.Core.Code.Database;
 using Nuse.Core.Code.Services;
+using Nuse.Core.Repositories;
 using System.Reflection;
 using System.Text;
 
@@ -41,6 +41,7 @@ namespace Nuse.Core
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IMeasurementRepository, MeasurementRepository>();
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
 

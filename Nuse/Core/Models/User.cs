@@ -14,7 +14,7 @@ namespace Nuse.Core.Models
 
         [Required]
         [StringLength(Constants.TinyLength, MinimumLength = Constants.MinimumLength)]
-        public String Username { get; set; }
+        public String Username { get; init; }
 
         [Required]
         [StringLength(Constants.SmallLength)]
