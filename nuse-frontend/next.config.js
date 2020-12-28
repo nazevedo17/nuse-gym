@@ -7,4 +7,13 @@ module.exports = {
   publicRuntimeConfig: {
     localeSubpaths,
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/clients',
+        permanent: true,
+      },
+    ];
+  },
 };

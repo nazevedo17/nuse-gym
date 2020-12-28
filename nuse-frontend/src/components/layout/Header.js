@@ -100,15 +100,10 @@ const Header = ({ t }) => {
     <>
       <AppBar position="sticky" className={classes.appBar}>
         <Toolbar>
-          <A href="/">
+          <A href="/clients">
             <Typography variant="h6" className={classes.title}>
               Nuse Gym
             </Typography>
-          </A>
-          <A href="/">
-            <Button color={handleColor('/')} className={classes.hover}>
-              {t('pages.home')}
-            </Button>
           </A>
           <A href="/clients">
             <Button color={handleColor('/clients')} className={classes.hover}>

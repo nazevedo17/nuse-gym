@@ -51,7 +51,7 @@ const LoginForm = ({ t }) => {
   useEffect(() => {
     if (user && user.token) {
       Cookies.set('token', user.token, { expires: 0.5 });
-      Router.push('/');
+      Router.push('/clients');
     }
   }, [user]);
 
