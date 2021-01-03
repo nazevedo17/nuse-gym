@@ -31,8 +31,8 @@ const LoginForm = ({ t }) => {
   const user = useSelector((state) => state.user);
 
   const LoginSchema = yup.object().shape({
-    username: yup.string().required('errors.required-field'),
-    password: yup.string().required('errors.required-field'),
+    username: yup.string().required('errors.requiredField'),
+    password: yup.string().required('errors.requiredField'),
   });
 
   const formik = useFormik({
@@ -79,7 +79,7 @@ const LoginForm = ({ t }) => {
         required
         fullWidth
         name="password"
-        label={t('text-field.password')}
+        label={t('textField.password')}
         type="password"
         id="password"
         autoComplete="current-password"

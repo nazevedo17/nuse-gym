@@ -18,7 +18,7 @@ import {
   ListItemIcon,
   Button,
 } from '@material-ui/core';
-import { Home, Group, ExitToApp } from '@material-ui/icons';
+import { Add, ExitToApp, Search } from '@material-ui/icons';
 
 import Cookies from 'js-cookie';
 
@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ t }) => {
+const Header = ({ t, handleAdd, handleFind }) => {
   const classes = useStyles();
 
   const router = useRouter();
@@ -127,6 +127,20 @@ const Header = ({ t }) => {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List className={classes.ul}>
+            {handleAdd && (
+              <ListItem button className={classes.li} onClick={handleAdd}>
+                <ListItemIcon className={classes.listItemIcon}>
+                  <Add className={classes.icon} />
+                </ListItemIcon>
+              </ListItem>
+            )}
+            {handleFind && (
+              <ListItem button className={classes.li} onClick={handleFind}>
+                <ListItemIcon className={classes.listItemIcon}>
+                  <Search className={classes.icon} />
+                </ListItemIcon>
+              </ListItem>
+            )}
             <ListItem button className={`${classes.logout} ${classes.li}`} onClick={handleLogout}>
               <ListItemIcon className={classes.listItemIcon}>
                 <ExitToApp className={classes.icon} />
@@ -141,6 +155,8 @@ const Header = ({ t }) => {
 
 Header.propTypes = {
   t: PropTypes.func.isRequired,
+  handleAdd: PropTypes.func,
+  handleFind: PropTypes.func,
 };
 
 export default Header;

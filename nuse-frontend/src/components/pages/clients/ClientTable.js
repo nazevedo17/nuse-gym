@@ -42,9 +42,6 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
     },
   },
-  window: {
-    'overflow-y': 'hidden',
-  },
 }));
 
 const ClientTable = ({ t }) => {
@@ -62,25 +59,27 @@ const ClientTable = ({ t }) => {
 
   const columns = [
     { field: 'id', headerName: 'ID', hide: true },
-    { field: 'firstName', headerName: 'First Name', width: 160 },
-    { field: 'lastName', headerName: 'Last Name', width: 160 },
+    { field: 'firstName', headerName: t('clients:table.firstName'), width: 160 },
+    { field: 'lastName', headerName: t('clients:table.lastName'), width: 160 },
     { field: 'email', headerName: 'Email', width: 200 },
-    { field: 'phoneNumber', headerName: 'Phone Number', width: 130 },
-    { field: 'address', headerName: 'Address', width: 200 },
+    { field: 'phoneNumber', headerName: t('clients:table.phoneNumber'), width: 130 },
+    { field: 'address', headerName: t('clients:table.address'), width: 250 },
     {
       field: 'gender',
-      headerName: 'Gender',
+      headerName: t('clients:table.gender'),
       // valueGetter: (params) => `${params.getValue('firstName') || ''} ${params.getValue('lastName') || ''}`,
     },
-    { field: 'birthDate', headerName: 'BirthDate', width: 110 },
+    { field: 'birthDate', headerName: t('clients:table.birthDate'), width: 110 },
     {
-      field: 'Edit',
+      field: 'edit',
+      headerName: t('clients:table.edit'),
       renderCell: (params) => {
         return <Edit onClick={() => console.log('edit')} className={classes.editIcon} />;
       },
     },
     {
-      field: 'Active',
+      field: 'active',
+      headerName: t('clients:table.active'),
       renderCell: (params) => {
         return <Switch checked={params.row.active} onChange={handleModal} color="secondary" name="checkedB" />;
       },
@@ -96,11 +95,8 @@ const ClientTable = ({ t }) => {
         loading={false}
         onPageChange={(pageChange) => console.log(pageChange)}
         disableSelectionOnClick
-        classes={{
-          window: classes.window,
-        }}
       />
-      {showModal && <ModalConfirm handleModal={handleModal} handleActive={handleActive} />}
+      {showModal && <ModalConfirm t={t} handleModal={handleModal} handleActive={handleActive} />}
     </div>
   );
 };
