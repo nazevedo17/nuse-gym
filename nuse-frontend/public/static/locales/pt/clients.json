@@ -1,0 +1,23 @@
+{
+  "table": {
+    "firstName": "Primeiro Nome",
+    "lastName": "Último Nome",
+    "phoneNumber": "Telemóvel",
+    "address": "Morada",
+    "gender": "Género",
+    "birthDate": "Data de nascimento",
+    "edit": "Editar",
+    "active": "Ativo"
+  },
+  "disable": {
+    "title": "Tens a certeza que pretende desativar este cliente?",
+    "description": "O cliente deixará de ter acesso à aplicação."
+  },
+  "find": {
+    "title": "Procurar um cliente",
+    "textField": "Nome do cliente..."
+  },
+  "add": {
+    "title": "Adicionar um cliente"
+  }
+}

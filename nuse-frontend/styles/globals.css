@@ -3,5 +3,9 @@ body {
 }
 
 #nprogress .bar {
-  background: #D32822 !important;
+  background: #d32822 !important;
+}
+
+.MuiDataGrid-window {
+  overflow-y: hidden !important;
 }

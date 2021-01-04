@@ -13,12 +13,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Layout = ({ t, children }) => {
+const Layout = ({ t, children, handleAdd, handleFind }) => {
   const classes = useStyles();
 
   return (
     <>
-      <Header t={t} />
+      <Header t={t} handleAdd={handleAdd} handleFind={handleFind}/>
       <Container maxWidth="xl" className={classes.container}>
         {children}
         <Footer t={t} />
@@ -29,6 +29,8 @@ const Layout = ({ t, children }) => {
 
 Layout.propTypes = {
   t: PropTypes.func.isRequired,
+  handleAdd: PropTypes.func,
+  handleFind: PropTypes.func,
 };
 
 export default Layout;

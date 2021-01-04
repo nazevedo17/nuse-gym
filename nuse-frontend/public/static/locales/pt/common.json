@@ -5,10 +5,15 @@
     "clients": "Clientes",
     "measurements": "Medições"
   },
-  "text-field": {
+  "textField": {
     "password": "Palavra-passe"
   },
   "errors": {
-    "required-field": "Campo obrigatório"
-  }
+    "requiredField": "Campo obrigatório"
+  },
+  "yes": "Sim",
+  "no": "Não",
+  "cancel": "Cancelar",
+  "find": "Procurar",
+  "add": "Adicionar"
 }

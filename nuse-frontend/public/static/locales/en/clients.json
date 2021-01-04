@@ -1,0 +1,23 @@
+{
+  "table": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phoneNumber": "Phone Number",
+    "address": "Address",
+    "gender": "Gender",
+    "birthDate": "BirthDate",
+    "edit": "Edit",
+    "active": "Active"
+  },
+  "disable": {
+    "title": "Are you sure you want to disable this costumer?",
+    "description": "The customer will no longer have access to the application."
+  },
+  "find": {
+    "title": "Find costumer",
+    "textField": "Costumer name..."
+  },
+  "add": {
+    "title": "Add a customer"
+  }
+}

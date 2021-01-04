@@ -5,10 +5,15 @@
     "clients": "Clients",
     "measurements": "Measurements"
   },
-  "text-field": {
+  "textField": {
     "password": "Password"
   },
   "errors": {
-    "required-field": "Required field"
-  }
+    "requiredField": "Required field"
+  },
+  "yes": "Yes",
+  "no": "No",
+  "cancel": "Cancel",
+  "find": "Find",
+  "add": "Add"
 }
