@@ -118,9 +118,9 @@ const AddClient = ({ t, handleModal }) => {
                   outlined: classes.select,
                 }}
               >
-                <MenuItem value="">Masculino</MenuItem>
-                <MenuItem value="">Femenino</MenuItem>
-                <MenuItem value="">Outro</MenuItem>
+                <MenuItem value={1}>{t('gender.male')}</MenuItem>
+                <MenuItem value={2}>{t('gender.female')}</MenuItem>
+                <MenuItem value={0}>{t('gender.other')}</MenuItem>
               </Select>
             </FormControl>
             <TextField

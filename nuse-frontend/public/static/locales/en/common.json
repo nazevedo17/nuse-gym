@@ -1,5 +1,10 @@
 {
   "language": "Language",
+  "yes": "Yes",
+  "no": "No",
+  "cancel": "Cancel",
+  "find": "Find",
+  "add": "Add",
   "pages": {
     "home": "Home",
     "clients": "Clients",
@@ -11,9 +16,9 @@
   "errors": {
     "requiredField": "Required field"
   },
-  "yes": "Yes",
-  "no": "No",
-  "cancel": "Cancel",
-  "find": "Find",
-  "add": "Add"
+  "gender": {
+    "male": "Male",
+    "female": "Female",
+    "other": "Other"
+  }
 }
