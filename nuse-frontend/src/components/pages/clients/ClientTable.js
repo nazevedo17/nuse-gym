@@ -9,6 +9,17 @@ import { DataGrid } from '@material-ui/data-grid';
 
 import ModalConfirm from './ModalConfirm';
 
+const getGender = (t, genderEnum) => {
+  switch (genderEnum) {
+    case 1:
+      return t('gender.male');
+    case 2:
+      return t('gender.female');
+    default:
+      return t('gender.other');
+  }
+};
+
 const rows = [
   {
     id: 1,
@@ -29,7 +40,7 @@ const rows = [
     email: 'a18477@alunos.ipca.pt',
     phoneNumber: '911111111',
     address: 'rua mato da senra nº31 3ºesq, 4770-215 joane',
-    gender: 'Masculino',
+    gender: 0,
     birthDate: '07/04/2000',
   },
 ];
@@ -67,7 +78,7 @@ const ClientTable = ({ t }) => {
     {
       field: 'gender',
       headerName: t('clients:table.gender'),
-      // valueGetter: (params) => `${params.getValue('firstName') || ''} ${params.getValue('lastName') || ''}`,
+      valueGetter: (params) => getGender(t, params.row.gender),
     },
     { field: 'birthDate', headerName: t('clients:table.birthDate'), width: 110 },
     {

@@ -1,5 +1,10 @@
 {
   "language": "Linguagem",
+  "yes": "Sim",
+  "no": "Não",
+  "cancel": "Cancelar",
+  "find": "Procurar",
+  "add": "Adicionar",
   "pages": {
     "home": "Home",
     "clients": "Clientes",
@@ -11,9 +16,9 @@
   "errors": {
     "requiredField": "Campo obrigatório"
   },
-  "yes": "Sim",
-  "no": "Não",
-  "cancel": "Cancelar",
-  "find": "Procurar",
-  "add": "Adicionar"
+  "gender": {
+    "male": "Masculino",
+    "female": "Feminino",
+    "other": "Outro"
+  }
 }
