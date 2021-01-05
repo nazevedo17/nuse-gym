@@ -71,3 +71,4 @@ C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\Microsoft.As
 C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\Microsoft.Identity.Web.dll
+C:\Users\sergi\Documents\GitHub\nuse-gym\Nuse\Core\bin\Debug\net5.0\Newtonsoft.Json.dll
