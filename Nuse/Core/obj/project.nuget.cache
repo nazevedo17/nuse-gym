@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "cTnI2h/txlUXGNKOASCUu5szpRKnC1Ue6k0arH5HEWwZMMKz7GP3lVb9wyd3WfUJC9cQqFE4q4mRyAFXoTF4bQ==",
+  "dgSpecHash": "ubJBT/gorb+rfXEJie7t+XYbaHfDyskGXg2QiWyDJ8S/HlWDLjgWaLxSNaK8VMjLK+RZ02pqHZqGOYpyMiQfXg==",
   "success": true,
   "projectFilePath": "C:\\Users\\sergi\\Documents\\GitHub\\nuse-gym\\Nuse\\Core\\Core.csproj",
   "expectedPackageFiles": [
@@ -68,6 +68,7 @@
     "C:\\Users\\sergi\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\sergi\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\sergi\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\sergi\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\sergi\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\sergi\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",
     "C:\\Users\\sergi\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
