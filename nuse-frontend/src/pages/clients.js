@@ -10,14 +10,12 @@ import ClientTable from 'src/components/pages/clients/ClientTable';
 import AddClient from 'src/components/pages/clients/AddClient';
 import FindClient from 'src/components/pages/clients/FindClient';
 
-// import A from 'components/util/A';
-// import Img from 'components/util/Img';
+import { END } from 'redux-saga';
 
-import { useSelector } from 'react-redux';
+import { wrapper } from '../../redux/store';
+import { getCostumers } from '../../redux/actions';
 
-const Clients = ({ t }) => {
-  const user = useSelector((state) => state.user);
-  console.log(user);
+const Clients = ({ t, costumers }) => {
   const [showAddClient, setShowAddClient] = useState(false);
   const [showFindClient, setShowFindClient] = useState(false);
 
@@ -35,7 +33,7 @@ const Clients = ({ t }) => {
       <Layout t={t} handleAdd={handleClientModal} handleFind={handleFindClientModal}>
         <section>
           <Box component="article" p={2}>
-            <ClientTable t={t} />
+            <ClientTable t={t} costumers={costumers} />
             {showAddClient && <AddClient t={t} handleModal={handleClientModal} />}
             {showFindClient && <FindClient t={t} handleModal={handleFindClientModal} />}
           </Box>
@@ -45,26 +43,19 @@ const Clients = ({ t }) => {
   );
 };
 
-// This gets called on every request
-// export async function getServerSideProps() {
-//   const res = await fetch(`https://.../data`);
-//   const data = await res.json();
+export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
+  const token = context.req.cookies.token;
+  let costumers = null;
+  if (token) {
+    context.store.dispatch(getCostumers({ filterName: '', token }));
+    context.store.dispatch(END);
 
-//   return { props: { data } };
-// }
+    await context.store.sagaTask.toPromise();
 
-//This function gets called at build time
-// export async function getStaticProps() {
-//   const res = await fetch(`https://.../data`);
-//   const data = await res.json();
+    costumers = context.store.getState().costumers;
+  }
 
-//   console.log(process.env.TEST);
-
-//   return { props: {} };
-// }
-
-Clients.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'clients'],
+  return { props: { namespacesRequired: ['common', 'clients'], costumers } };
 });
 
 Clients.propTypes = {

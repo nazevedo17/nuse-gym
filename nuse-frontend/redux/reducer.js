@@ -4,6 +4,7 @@ const initialState = {
   error: false,
   loading: false,
   user: {},
+  costumers: [],
 };
 
 function reducer(state = initialState, action) {
@@ -24,6 +25,12 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         ...{ user: action.data },
+      };
+
+    case actionTypes.GET_COSTUMERS_SUCCESS:
+      return {
+        ...state,
+        ...{ costumers: action.data },
       };
 
     case actionTypes.LOGOUT:

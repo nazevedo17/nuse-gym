@@ -4,6 +4,8 @@ export const actionTypes = {
   LOGIN: 'LOGIN',
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   LOGOUT: 'LOGOUT',
+  GET_COSTUMERS: 'GET_COSTUMERS',
+  GET_COSTUMERS_SUCCESS: 'GET_COSTUMERS_SUCCESS',
 };
 
 export function failure(error) {
@@ -33,6 +35,17 @@ export function login(payload) {
 export function loginSuccess(data) {
   return {
     type: actionTypes.LOGIN_SUCCESS,
+    data,
+  };
+}
+
+export function getCostumers(payload) {
+  return { type: actionTypes.GET_COSTUMERS, payload };
+}
+
+export function getCostumersSuccess(data) {
+  return {
+    type: actionTypes.GET_COSTUMERS_SUCCESS,
     data,
   };
 }

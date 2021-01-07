@@ -20,31 +20,6 @@ const getGender = (t, genderEnum) => {
   }
 };
 
-const rows = [
-  {
-    id: 1,
-    active: true,
-    firstName: 'Nuno',
-    lastName: 'Azevedo',
-    email: 'a18477@alunos.ipca.pt',
-    phoneNumber: '911111111',
-    address: 'rua mato da senra nº31 3ºesq, 4770-215 joane',
-    gender: 1,
-    birthDate: '07/04/2000',
-  },
-  {
-    id: 100,
-    active: false,
-    firstName: 'Nuno Rafael',
-    lastName: 'Ferreira Azevedo',
-    email: 'a18477@alunos.ipca.pt',
-    phoneNumber: '911111111',
-    address: 'rua mato da senra nº31 3ºesq, 4770-215 joane',
-    gender: 0,
-    birthDate: '07/04/2000',
-  },
-];
-
 const useStyles = makeStyles((theme) => ({
   editIcon: {
     margin: 'auto',
@@ -55,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ClientTable = ({ t }) => {
+const ClientTable = ({ t, costumers }) => {
   const classes = useStyles();
   const [showModal, setShowModal] = useState(false);
 
@@ -65,7 +40,6 @@ const ClientTable = ({ t }) => {
 
   const handleActive = () => {
     handleModal();
-    console.log('handleActive');
   };
 
   const columns = [
@@ -100,11 +74,11 @@ const ClientTable = ({ t }) => {
   return (
     <div style={{ height: 630, width: '100%' }}>
       <DataGrid
-        rows={rows}
+        rows={costumers}
         columns={columns}
         pageSize={10}
         loading={false}
-        onPageChange={(pageChange) => console.log(pageChange)}
+        // onPageChange={(pageChange) => console.log(pageChange)}
         disableSelectionOnClick
       />
       {showModal && <ModalConfirm t={t} handleModal={handleModal} handleActive={handleActive} />}
@@ -114,6 +88,7 @@ const ClientTable = ({ t }) => {
 
 ClientTable.propTypes = {
   t: PropTypes.func.isRequired,
+  costumers: PropTypes.array,
 };
 
-export default withTranslation('common')(ClientTable);
+export default ClientTable;

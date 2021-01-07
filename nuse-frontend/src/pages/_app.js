@@ -14,6 +14,13 @@ import { wrapper } from '../../redux/store';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
+import axios from 'axios';
+import https from 'https';
+
+axios.defaults.httpsAgent = new https.Agent({
+  rejectUnauthorized: false,
+});
+
 NProgress.configure({ showSpinner: false });
 
 Router.events.on('routeChangeStart', () => NProgress.start());

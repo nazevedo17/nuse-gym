@@ -7,17 +7,7 @@ import { Router } from '../../i18n';
 import A from '../../components/util/A';
 
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  IconButton,
-  Drawer,
-  AppBar,
-  Toolbar,
-  List,
-  Typography,
-  ListItem,
-  ListItemIcon,
-  Button,
-} from '@material-ui/core';
+import { Drawer, AppBar, Toolbar, List, Typography, ListItem, ListItemIcon, Button } from '@material-ui/core';
 import { Add, ExitToApp, Search } from '@material-ui/icons';
 
 import Cookies from 'js-cookie';
@@ -79,6 +69,7 @@ const Header = ({ t, handleAdd, handleFind }) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    Cookies.set('token', '');
     dispatch(logout());
     Router.push('/login');
   };
