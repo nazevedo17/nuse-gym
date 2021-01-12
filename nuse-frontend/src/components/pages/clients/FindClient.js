@@ -14,8 +14,8 @@ import {
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import Cookies from 'js-cookie';
-import axios from 'axios';
+
+import { getCustomers } from 'src/api/api';
 
 const FindClient = ({ t, handleModal, setAllCustomers }) => {
   const [loading, setLoading] = useState(false);
@@ -35,21 +35,17 @@ const FindClient = ({ t, handleModal, setAllCustomers }) => {
 
   const handleClient = (values) => {
     setLoading(true);
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/customers/`, {
-        data: { filterName: values.username },
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${Cookies.get('token')}`,
-        },
-      })
+    const body = { filterName: values.username };
+    getCustomers(body)
       .then((res) => {
         const { data } = res;
         setAllCustomers(data.customers);
       })
       .catch(() => setError(true))
-      .then(() => setLoading(false));
+      .then(() => {
+        setLoading(false);
+        handleModal();
+      });
   };
 
   return (

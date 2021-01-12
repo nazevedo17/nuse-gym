@@ -8,7 +8,7 @@ import A from '../../components/util/A';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Drawer, AppBar, Toolbar, List, Typography, ListItem, ListItemIcon, Button } from '@material-ui/core';
-import { Add, ExitToApp, Search } from '@material-ui/icons';
+import { Add, ExitToApp, Search, Refresh } from '@material-ui/icons';
 
 import Cookies from 'js-cookie';
 
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ t, handleAdd, handleFind }) => {
+const Header = ({ t, handleAdd, handleFind, handleRefresh }) => {
   const classes = useStyles();
 
   const router = useRouter();
@@ -127,6 +127,13 @@ const Header = ({ t, handleAdd, handleFind }) => {
                 </ListItemIcon>
               </ListItem>
             )}
+            {handleRefresh && (
+              <ListItem button className={classes.li} onClick={handleRefresh}>
+                <ListItemIcon className={classes.listItemIcon}>
+                  <Refresh className={classes.icon} />
+                </ListItemIcon>
+              </ListItem>
+            )}
             <ListItem button className={`${classes.logout} ${classes.li}`} onClick={handleLogout}>
               <ListItemIcon className={classes.listItemIcon}>
                 <ExitToApp className={classes.icon} />
@@ -143,6 +150,7 @@ Header.propTypes = {
   t: PropTypes.func.isRequired,
   handleAdd: PropTypes.func,
   handleFind: PropTypes.func,
+  handleRefresh: PropTypes.func,
 };
 
 export default Header;

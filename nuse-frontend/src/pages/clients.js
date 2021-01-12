@@ -10,14 +10,16 @@ import ClientTable from 'src/components/pages/clients/ClientTable';
 import AddClient from 'src/components/pages/clients/AddClient';
 import FindClient from 'src/components/pages/clients/FindClient';
 
-import axios from 'axios';
 import Router from 'next/router';
 import Cookies from 'js-cookie';
+
+import { getCustomers } from 'src/api/api';
 
 const Clients = ({ t, customers }) => {
   const [showAddClient, setShowAddClient] = useState(false);
   const [showFindClient, setShowFindClient] = useState(false);
   const [allCustomers, setAllCustomers] = useState(customers);
+  const [loading, setLoading] = useState(false);
 
   const handleClientModal = () => {
     setShowAddClient((curr) => !curr);
@@ -27,13 +29,25 @@ const Clients = ({ t, customers }) => {
     setShowFindClient((curr) => !curr);
   };
 
+  const handleRefresh = () => {
+    const body = { filterName: '' };
+    setLoading(true);
+    getCustomers(body)
+      .then((res) => {
+        const { data } = res;
+        setAllCustomers(data.customers);
+      })
+      .catch(() => {})
+      .then(() => setLoading(false));
+  };
+
   return (
     <>
       <PageTitle title={t('pages.clients')} />
-      <Layout t={t} handleAdd={handleClientModal} handleFind={handleFindClientModal}>
+      <Layout t={t} handleAdd={handleClientModal} handleFind={handleFindClientModal} handleRefresh={handleRefresh}>
         <section>
           <Box component="article" p={2}>
-            <ClientTable t={t} customers={allCustomers} />
+            <ClientTable t={t} customers={allCustomers} loading={loading} setLoading={setLoading} />
             {showAddClient && <AddClient t={t} handleModal={handleClientModal} />}
             {showFindClient && (
               <FindClient t={t} handleModal={handleFindClientModal} setAllCustomers={setAllCustomers} />
@@ -50,14 +64,8 @@ Clients.getInitialProps = async (context) => {
   let customers = [];
 
   if (token) {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_API}/customers/`, {
-      data: { filterName: '' },
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const body = { filterName: '' };
+    const response = await getCustomers(body, token);
     customers = response.data.customers;
   } else {
     if (context.res) {

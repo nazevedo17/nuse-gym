@@ -6,10 +6,10 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Cookies from 'js-cookie';
 import jwt_decode from 'jwt-decode';
-import axios from 'axios';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button, CircularProgress, Typography } from '@material-ui/core';
+import { login } from 'src/api/api';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -41,15 +41,9 @@ const LoginForm = ({ t }) => {
     onSubmit: (values) => handleLogin(values),
   });
 
-  const handleLogin = (credentials) => {
+  const handleLogin = (body) => {
     setLoading(true);
-    axios
-      .post(`${process.env.NEXT_PUBLIC_API}/users/login`, credentials, {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      })
+    login(body)
       .then((res) => {
         const { data } = res;
         const jwtDecoded = jwt_decode(data.token);

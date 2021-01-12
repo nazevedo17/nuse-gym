@@ -9,7 +9,7 @@ import { XGrid, useApiRef } from '@material-ui/x-grid';
 import ModalConfirm from './ModalConfirm';
 
 import Cookies from 'js-cookie';
-import axios from "axios";
+import { editCustomer } from 'src/api/api';
 
 const getGender = (t, genderEnum) => {
   switch (genderEnum) {
@@ -39,11 +39,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ClientTable = ({ t, customers }) => {
+const ClientTable = ({ t, customers, loading, setLoading }) => {
   const classes = useStyles();
   const [showModal, setShowModal] = useState(false);
   const [costumerData, setCostumerData] = useState(null);
-  const [loading, setLoading] = useState(false);
   const apiRef = useApiRef();
 
   const handleModal = (row) => {
@@ -54,14 +53,7 @@ const ClientTable = ({ t, customers }) => {
   const handleActive = () => {
     setLoading(true);
     const body = { ...costumerData, active: !costumerData.active };
-    axios
-      .put(`${process.env.NEXT_PUBLIC_API}/customers/edit`, body, {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${Cookies.get('token')}`,
-        },
-      })
+    editCustomer(body)
       .then(() => {
         const newCustomers = [];
 
@@ -91,7 +83,15 @@ const ClientTable = ({ t, customers }) => {
       headerName: t('clients:table.gender'),
       valueGetter: (params) => getGender(t, params.row.gender),
     },
-    { field: 'birthDate', headerName: t('clients:table.birthDate'), width: 110 },
+    {
+      field: 'birthDate',
+      headerName: t('clients:table.birthDate'),
+      width: 130,
+      renderCell: (params) => {
+        const date = new Date(params.row.birthDate);
+        return date.toLocaleDateString();
+      },
+    },
     {
       field: 'edit',
       headerName: t('clients:table.edit'),
@@ -134,6 +134,8 @@ const ClientTable = ({ t, customers }) => {
 ClientTable.propTypes = {
   t: PropTypes.func.isRequired,
   customers: PropTypes.array,
+  loading: PropTypes.bool,
+  setLoading: PropTypes.func,
 };
 
 export default ClientTable;
