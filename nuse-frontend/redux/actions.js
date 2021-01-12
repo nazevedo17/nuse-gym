@@ -6,6 +6,7 @@ export const actionTypes = {
   LOGOUT: 'LOGOUT',
   GET_COSTUMERS: 'GET_COSTUMERS',
   GET_COSTUMERS_SUCCESS: 'GET_COSTUMERS_SUCCESS',
+  EDIT_COSTUMER: 'EDIT_COSTUMER',
 };
 
 export function failure(error) {
@@ -47,5 +48,12 @@ export function getCostumersSuccess(data) {
   return {
     type: actionTypes.GET_COSTUMERS_SUCCESS,
     data,
+  };
+}
+
+export function editCostumer(payload) {
+  return {
+    type: actionTypes.EDIT_COSTUMER,
+    payload,
   };
 }

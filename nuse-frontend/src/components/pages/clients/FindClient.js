@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 
 import {
   Button,
@@ -8,70 +7,73 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
+  CircularProgress,
+  Typography,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-  divInputs: {
-    display: 'flex',
-    '& > div:nth-of-type(1)': {
-      marginRight: 10,
-    },
-    '& > div:nth-of-type(2)': {
-      marginLeft: 10,
-    },
-  },
-  select: {
-    padding: '18.5px 14px',
-  },
-  formControl: {
-    width: '100%',
-    marginTop: 16,
-    marginBottom: 8,
-  },
-}));
+import { useSelector, useDispatch } from 'react-redux';
+import { getCostumers } from '../../../../redux/actions';
+
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import Cookies from 'js-cookie';
 
 const FindClient = ({ t, handleModal }) => {
-  const classes = useStyles();
-
+  const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading);
+  const error = useSelector((state) => state.error);
+
+  const FindClientSchema = yup.object().shape({
+    username: yup.string().required('errors.requiredField'),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      username: '',
+    },
+    validationSchema: FindClientSchema,
+    onSubmit: (values) => handleClient(values),
+  });
+
+  const handleClient = (values) => {
+    dispatch(getCostumers({ filterName: values.username, token: Cookies.getJSON('token') }));
+  };
 
   return (
     <Dialog open={true} onClose={handleModal} maxWidth="md" fullWidth>
       <DialogTitle id="alert-dialog-title">{t('clients:find.title')}</DialogTitle>
-      <DialogContent>
-        <form>
+      <form onSubmit={formik.handleSubmit}>
+        <DialogContent>
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="name"
+            id="username"
             label={t('clients:find.textField')}
-            name="name"
+            name="username"
             autoFocus
+            onChange={formik.handleChange}
+            value={formik.values.username}
+            error={formik.touched.username && !!formik.errors.username}
+            helperText={formik.touched.username && t(formik.errors.username)}
+            disabled={loading}
           />
-        </form>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleModal} color="primary">
-          {t('cancel')}
-        </Button>
-        <Button onClick={() => {}} color="secondary" autoFocus>
-          {t('find')}
-        </Button>
-      </DialogActions>
+          {error && (
+            <Typography variant="subtitle2" align="center" color="error">
+              Erro
+            </Typography>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleModal} color="primary">
+            {t('cancel')}
+          </Button>
+          <Button type="submit" onClick={() => {}} color="secondary" autoFocus>
+            {!loading ? t('find') : <CircularProgress size={24} color="secondary" />}
+          </Button>
+        </DialogActions>
+      </form>
     </Dialog>
   );
 };

@@ -21,8 +21,8 @@ function* loginSaga(data) {
     const response = yield call(request, actionTypes.LOGIN);
     const { data } = response;
     yield put(loginSuccess(data));
-  } catch (err) {
-    yield put(failure(err));
+  } catch (error) {
+    yield put(failure(true));
   } finally {
     yield put(loading(false));
   }
@@ -43,7 +43,7 @@ function* getCostumersSaga({ payload }) {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
-        'entity-body': '*OCTET',
+        // 'entity-body': '*OCTET',
       },
     });
 
@@ -52,8 +52,32 @@ function* getCostumersSaga({ payload }) {
     const { data } = response;
 
     yield put(getCostumersSuccess(data.customers));
-  } catch (err) {
-    yield put(failure(err));
+  } catch (error) {
+    yield put(failure(true));
+  } finally {
+    yield put(loading(false));
+  }
+}
+
+function* editCostumerSaga({ payload }) {
+  const { body, token } = payload;
+
+  yield put(loading(true));
+  yield put(failure(false));
+
+  const request = () =>
+    axios.put(`${process.env.NEXT_PUBLIC_API}/customers/edit`, body, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+  try {
+    yield call(request, actionTypes.EDIT_COSTUMER);
+  } catch (error) {
+    yield put(failure(true));
   } finally {
     yield put(loading(false));
   }
@@ -62,6 +86,7 @@ function* getCostumersSaga({ payload }) {
 function* rootSaga() {
   yield all([takeLatest(actionTypes.LOGIN, loginSaga)]);
   yield all([takeLatest(actionTypes.GET_COSTUMERS, getCostumersSaga)]);
+  yield all([takeLatest(actionTypes.EDIT_COSTUMER, editCostumerSaga)]);
 }
 
 export default rootSaga;

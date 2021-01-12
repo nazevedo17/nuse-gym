@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
-import { withTranslation } from 'src/i18n';
 import { useState } from 'react';
 
 import { Switch } from '@material-ui/core';
 import { Edit } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
-import { DataGrid } from '@material-ui/data-grid';
+import { XGrid, useApiRef } from '@material-ui/x-grid';
 
 import ModalConfirm from './ModalConfirm';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { editCostumer } from '../../../../redux/actions';
+import Cookies from 'js-cookie';
 
 const getGender = (t, genderEnum) => {
   switch (genderEnum) {
@@ -28,18 +31,44 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
     },
   },
+  table: {
+    height: 630,
+    width: '100%',
+    '& .MuiDataGrid-mainGridContainer > div:nth-of-type(1)': {
+      display: 'none',
+    },
+  },
 }));
 
 const ClientTable = ({ t, costumers }) => {
   const classes = useStyles();
   const [showModal, setShowModal] = useState(false);
+  const [costumerData, setCostumerData] = useState(null);
+  const apiRef = useApiRef();
 
-  const handleModal = () => {
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.loading);
+
+  const handleModal = (row) => {
+    setCostumerData(row);
     setShowModal((curr) => !curr);
   };
 
   const handleActive = () => {
-    handleModal();
+    const body = { ...costumerData, active: !costumerData.active };
+    dispatch(editCostumer({ body, token: Cookies.getJSON('token') }));
+    handleModal(null);
+    editCostumers();
+  };
+
+  const editCostumers = () => {
+    const newCostumers = [];
+
+    for (var i in apiRef.current.state.rows.idRowsLookup) newCostumers.push(apiRef.current.state.rows.idRowsLookup[i]);
+
+    const costumerIndex = newCostumers.findIndex((costumer) => costumer.id == costumerData.id);
+    newCostumers[costumerIndex] = { ...costumerData, active: !costumerData.active };
+    apiRef.current.updateRows(newCostumers);
   };
 
   const columns = [
@@ -66,20 +95,28 @@ const ClientTable = ({ t, costumers }) => {
       field: 'active',
       headerName: t('clients:table.active'),
       renderCell: (params) => {
-        return <Switch checked={params.row.active} onChange={handleModal} color="secondary" name="checkedB" />;
+        return (
+          <Switch
+            checked={params.row.active}
+            onChange={() => handleModal(params.row)}
+            color="secondary"
+            name="checkedB"
+          />
+        );
       },
     },
   ];
 
   return (
-    <div style={{ height: 630, width: '100%' }}>
-      <DataGrid
+    <div className={classes.table}>
+      <XGrid
         rows={costumers}
         columns={columns}
         pageSize={10}
-        loading={false}
-        // onPageChange={(pageChange) => console.log(pageChange)}
+        loading={loading}
+        apiRef={apiRef}
         disableSelectionOnClick
+        // onPageChange={(pageChange) => console.log(pageChange)}
       />
       {showModal && <ModalConfirm t={t} handleModal={handleModal} handleActive={handleActive} />}
     </div>

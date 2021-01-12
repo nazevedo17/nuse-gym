@@ -8,6 +8,7 @@ import { login } from '../../../../redux/actions';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Cookies from 'js-cookie';
+import jwt_decode from 'jwt-decode';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button, CircularProgress, Typography } from '@material-ui/core';
@@ -50,7 +51,10 @@ const LoginForm = ({ t }) => {
 
   useEffect(() => {
     if (user && user.token) {
-      Cookies.set('token', user.token, { expires: 0.5 });
+      const jwtDecoded = jwt_decode(user.token);
+      const days = (jwtDecoded.exp / (60 * 60 * 24 * 1000)).toFixed(1);
+
+      Cookies.set('token', user.token, { expires: Number(days) });
       Router.push('/clients');
     }
   }, [user]);
