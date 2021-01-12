@@ -86,14 +86,14 @@ const Header = ({ t, handleAdd, handleFind, handleRefresh }) => {
     <>
       <AppBar position="sticky" className={classes.appBar}>
         <Toolbar>
-          <A href="/clients">
+          <A href="/customers">
             <Typography variant="h6" className={classes.title}>
               Nuse Gym
             </Typography>
           </A>
-          <A href="/clients">
-            <Button color={handleColor('/clients')} className={classes.hover}>
-              {t('pages.clients')}
+          <A href="/customers">
+            <Button color={handleColor('/customers')} className={classes.hover}>
+              {t('pages.customers')}
             </Button>
           </A>
           <A href="/measurements">

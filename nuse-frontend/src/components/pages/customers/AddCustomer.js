@@ -41,12 +41,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddClient = ({ t, handleModal }) => {
+const AddCustomer = ({ t, handleModal }) => {
   const classes = useStyles();
 
   return (
     <Dialog open={true} onClose={handleModal} maxWidth="md" fullWidth>
-      <DialogTitle id="alert-dialog-title">{t('clients:add.title')}</DialogTitle>
+      <DialogTitle id="alert-dialog-title">{t('customers:add.title')}</DialogTitle>
       <DialogContent>
         <form>
           <div className={classes.divInputs}>
@@ -56,7 +56,7 @@ const AddClient = ({ t, handleModal }) => {
               required
               fullWidth
               id="firstName"
-              label={t('clients:table.firstName')}
+              label={t('customers:table.firstName')}
               name="firstName"
               autoFocus
             />
@@ -66,7 +66,7 @@ const AddClient = ({ t, handleModal }) => {
               required
               fullWidth
               name="lastName"
-              label={t('clients:table.lastName')}
+              label={t('customers:table.lastName')}
               id="lastName"
             />
           </div>
@@ -87,7 +87,7 @@ const AddClient = ({ t, handleModal }) => {
               required
               fullWidth
               name="phoneNumber"
-              label={t('clients:table.phoneNumber')}
+              label={t('customers:table.phoneNumber')}
               id="phoneNumber"
               type="number"
             />
@@ -98,19 +98,19 @@ const AddClient = ({ t, handleModal }) => {
             required
             fullWidth
             name="address"
-            label={t('clients:table.address')}
+            label={t('customers:table.address')}
             id="address"
           />
           <div className={classes.divInputs}>
             <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel id="label-language">{t('clients:table.gender')}</InputLabel>
+              <InputLabel id="label-language">{t('customers:table.gender')}</InputLabel>
               <Select
                 labelId="label-gender"
                 id="select-gender"
                 // value={i18n.language || 'en'}
                 // defaultValue={i18n.language || 'en'}
                 // onChange={handleChange}
-                label={t('clients:table.gender')}
+                label={t('customers:table.gender')}
                 classes={{
                   outlined: classes.select,
                 }}
@@ -126,7 +126,7 @@ const AddClient = ({ t, handleModal }) => {
               required
               fullWidth
               id="birthDate"
-              label={t('clients:table.birthDate')}
+              label={t('customers:table.birthDate')}
               name="birthDate"
               type="date"
               defaultValue="2017-05-24"
@@ -150,9 +150,9 @@ const AddClient = ({ t, handleModal }) => {
   );
 };
 
-AddClient.propTypes = {
+AddCustomer.propTypes = {
   t: PropTypes.func,
   handleModal: PropTypes.func,
 };
 
-export default AddClient;
+export default AddCustomer;

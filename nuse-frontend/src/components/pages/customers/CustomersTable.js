@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ClientTable = ({ t, customers, loading, setLoading }) => {
+const CustomersTable = ({ t, customers, loading, setLoading }) => {
   const classes = useStyles();
   const [showModal, setShowModal] = useState(false);
   const [costumerData, setCostumerData] = useState(null);
@@ -73,19 +73,19 @@ const ClientTable = ({ t, customers, loading, setLoading }) => {
 
   const columns = [
     { field: 'id', headerName: 'ID', hide: true },
-    { field: 'firstName', headerName: t('clients:table.firstName'), width: 160 },
-    { field: 'lastName', headerName: t('clients:table.lastName'), width: 160 },
+    { field: 'firstName', headerName: t('customers:table.firstName'), width: 160 },
+    { field: 'lastName', headerName: t('customers:table.lastName'), width: 160 },
     { field: 'email', headerName: 'Email', width: 200 },
-    { field: 'phoneNumber', headerName: t('clients:table.phoneNumber'), width: 130 },
-    { field: 'address', headerName: t('clients:table.address'), width: 250 },
+    { field: 'phoneNumber', headerName: t('customers:table.phoneNumber'), width: 130 },
+    { field: 'address', headerName: t('customers:table.address'), width: 250 },
     {
       field: 'gender',
-      headerName: t('clients:table.gender'),
+      headerName: t('customers:table.gender'),
       valueGetter: (params) => getGender(t, params.row.gender),
     },
     {
       field: 'birthDate',
-      headerName: t('clients:table.birthDate'),
+      headerName: t('customers:table.birthDate'),
       width: 130,
       renderCell: (params) => {
         const date = new Date(params.row.birthDate);
@@ -94,14 +94,14 @@ const ClientTable = ({ t, customers, loading, setLoading }) => {
     },
     {
       field: 'edit',
-      headerName: t('clients:table.edit'),
+      headerName: t('customers:table.edit'),
       renderCell: (params) => {
         return <Edit onClick={() => console.log('edit')} className={classes.editIcon} />;
       },
     },
     {
       field: 'active',
-      headerName: t('clients:table.active'),
+      headerName: t('customers:table.active'),
       renderCell: (params) => {
         return (
           <Switch
@@ -131,11 +131,11 @@ const ClientTable = ({ t, customers, loading, setLoading }) => {
   );
 };
 
-ClientTable.propTypes = {
+CustomersTable.propTypes = {
   t: PropTypes.func.isRequired,
   customers: PropTypes.array,
   loading: PropTypes.bool,
   setLoading: PropTypes.func,
 };
 
-export default ClientTable;
+export default CustomersTable;

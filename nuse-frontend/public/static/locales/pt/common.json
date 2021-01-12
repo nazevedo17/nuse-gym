@@ -7,7 +7,7 @@
   "add": "Adicionar",
   "pages": {
     "home": "Home",
-    "clients": "Clientes",
+    "customers": "Clientes",
     "measurements": "Medições"
   },
   "textField": {

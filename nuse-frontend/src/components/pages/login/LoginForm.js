@@ -50,7 +50,7 @@ const LoginForm = ({ t }) => {
         const days = (jwtDecoded.exp / (60 * 60 * 24 * 1000)).toFixed(1);
 
         Cookies.set('token', data.token, { expires: Number(days) });
-        Router.push('/clients');
+        Router.push('/customers');
       })
       .catch(() => setError(true))
       .then(() => setLoading(false));

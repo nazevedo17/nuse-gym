@@ -4,9 +4,9 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 
 const ModalConfirm = ({ t, handleModal, handleActive }) => (
   <Dialog open={true} onClose={handleModal}>
-    <DialogTitle id="alert-dialog-title">{t('clients:disable.title')}</DialogTitle>
+    <DialogTitle id="alert-dialog-title">{t('customers:disable.title')}</DialogTitle>
     <DialogContent>
-      <DialogContentText id="alert-dialog-description">{t('clients:disable.description')}</DialogContentText>
+      <DialogContentText id="alert-dialog-description">{t('customers:disable.description')}</DialogContentText>
     </DialogContent>
     <DialogActions>
       <Button onClick={handleModal} color="primary">

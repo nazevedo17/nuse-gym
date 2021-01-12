@@ -17,11 +17,11 @@ import * as yup from 'yup';
 
 import { getCustomers } from 'src/api/api';
 
-const FindClient = ({ t, handleModal, setAllCustomers }) => {
+const FindCustomer = ({ t, handleModal, setAllCustomers }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const FindClientSchema = yup.object().shape({
+  const FindCustomerSchema = yup.object().shape({
     username: yup.string().required('errors.requiredField'),
   });
 
@@ -29,11 +29,11 @@ const FindClient = ({ t, handleModal, setAllCustomers }) => {
     initialValues: {
       username: '',
     },
-    validationSchema: FindClientSchema,
-    onSubmit: (values) => handleClient(values),
+    validationSchema: FindCustomerSchema,
+    onSubmit: (values) => handleCustomer(values),
   });
 
-  const handleClient = (values) => {
+  const handleCustomer = (values) => {
     setLoading(true);
     const body = { filterName: values.username };
     getCustomers(body)
@@ -50,7 +50,7 @@ const FindClient = ({ t, handleModal, setAllCustomers }) => {
 
   return (
     <Dialog open={true} onClose={handleModal} maxWidth="md" fullWidth>
-      <DialogTitle id="alert-dialog-title">{t('clients:find.title')}</DialogTitle>
+      <DialogTitle id="alert-dialog-title">{t('customers:find.title')}</DialogTitle>
       <form onSubmit={formik.handleSubmit}>
         <DialogContent>
           <TextField
@@ -59,7 +59,7 @@ const FindClient = ({ t, handleModal, setAllCustomers }) => {
             required
             fullWidth
             id="username"
-            label={t('clients:find.textField')}
+            label={t('customers:find.textField')}
             name="username"
             autoFocus
             onChange={formik.handleChange}
@@ -87,10 +87,10 @@ const FindClient = ({ t, handleModal, setAllCustomers }) => {
   );
 };
 
-FindClient.propTypes = {
+FindCustomer.propTypes = {
   t: PropTypes.func,
   handleModal: PropTypes.func,
   setAllCustomers: PropTypes.func,
 };
 
-export default FindClient;
+export default FindCustomer;
