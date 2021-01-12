@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 
 import {
   Button,
@@ -44,8 +43,6 @@ const useStyles = makeStyles((theme) => ({
 
 const AddClient = ({ t, handleModal }) => {
   const classes = useStyles();
-
-  const loading = useSelector((state) => state.loading);
 
   return (
     <Dialog open={true} onClose={handleModal} maxWidth="md" fullWidth>

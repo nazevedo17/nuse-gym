@@ -8,9 +8,8 @@ import { XGrid, useApiRef } from '@material-ui/x-grid';
 
 import ModalConfirm from './ModalConfirm';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { editCostumer } from '../../../../redux/actions';
 import Cookies from 'js-cookie';
+import axios from "axios";
 
 const getGender = (t, genderEnum) => {
   switch (genderEnum) {
@@ -40,14 +39,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ClientTable = ({ t, costumers }) => {
+const ClientTable = ({ t, customers }) => {
   const classes = useStyles();
   const [showModal, setShowModal] = useState(false);
   const [costumerData, setCostumerData] = useState(null);
+  const [loading, setLoading] = useState(false);
   const apiRef = useApiRef();
-
-  const dispatch = useDispatch();
-  const loading = useSelector((state) => state.loading);
 
   const handleModal = (row) => {
     setCostumerData(row);
@@ -55,20 +52,31 @@ const ClientTable = ({ t, costumers }) => {
   };
 
   const handleActive = () => {
+    setLoading(true);
     const body = { ...costumerData, active: !costumerData.active };
-    dispatch(editCostumer({ body, token: Cookies.getJSON('token') }));
-    handleModal(null);
-    editCostumers();
-  };
+    axios
+      .put(`${process.env.NEXT_PUBLIC_API}/customers/edit`, body, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        },
+      })
+      .then(() => {
+        const newCustomers = [];
 
-  const editCostumers = () => {
-    const newCostumers = [];
+        for (var i in apiRef.current.state.rows.idRowsLookup)
+          newCustomers.push(apiRef.current.state.rows.idRowsLookup[i]);
 
-    for (var i in apiRef.current.state.rows.idRowsLookup) newCostumers.push(apiRef.current.state.rows.idRowsLookup[i]);
-
-    const costumerIndex = newCostumers.findIndex((costumer) => costumer.id == costumerData.id);
-    newCostumers[costumerIndex] = { ...costumerData, active: !costumerData.active };
-    apiRef.current.updateRows(newCostumers);
+        const costumerIndex = newCustomers.findIndex((costumer) => costumer.id == costumerData.id);
+        newCustomers[costumerIndex] = { ...costumerData, active: !costumerData.active };
+        apiRef.current.updateRows(newCustomers);
+      })
+      .catch((error) => console.log(error))
+      .then(() => {
+        handleModal(null);
+        setLoading(false);
+      });
   };
 
   const columns = [
@@ -110,7 +118,7 @@ const ClientTable = ({ t, costumers }) => {
   return (
     <div className={classes.table}>
       <XGrid
-        rows={costumers}
+        rows={customers}
         columns={columns}
         pageSize={10}
         loading={loading}
@@ -125,7 +133,7 @@ const ClientTable = ({ t, costumers }) => {
 
 ClientTable.propTypes = {
   t: PropTypes.func.isRequired,
-  costumers: PropTypes.array,
+  customers: PropTypes.array,
 };
 
 export default ClientTable;

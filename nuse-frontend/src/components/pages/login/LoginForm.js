@@ -1,14 +1,12 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Router } from '../../../i18n';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../../../redux/actions';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Cookies from 'js-cookie';
 import jwt_decode from 'jwt-decode';
+import axios from 'axios';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button, CircularProgress, Typography } from '@material-ui/core';
@@ -26,10 +24,8 @@ const useStyles = makeStyles((theme) => ({
 const LoginForm = ({ t }) => {
   const classes = useStyles();
 
-  const dispatch = useDispatch();
-  const loading = useSelector((state) => state.loading);
-  const error = useSelector((state) => state.error);
-  const user = useSelector((state) => state.user);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const LoginSchema = yup.object().shape({
     username: yup.string().required('errors.requiredField'),
@@ -45,19 +41,26 @@ const LoginForm = ({ t }) => {
     onSubmit: (values) => handleLogin(values),
   });
 
-  const handleLogin = (values) => {
-    dispatch(login(values));
+  const handleLogin = (credentials) => {
+    setLoading(true);
+    axios
+      .post(`${process.env.NEXT_PUBLIC_API}/users/login`, credentials, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => {
+        const { data } = res;
+        const jwtDecoded = jwt_decode(data.token);
+        const days = (jwtDecoded.exp / (60 * 60 * 24 * 1000)).toFixed(1);
+
+        Cookies.set('token', data.token, { expires: Number(days) });
+        Router.push('/clients');
+      })
+      .catch(() => setError(true))
+      .then(() => setLoading(false));
   };
-
-  useEffect(() => {
-    if (user && user.token) {
-      const jwtDecoded = jwt_decode(user.token);
-      const days = (jwtDecoded.exp / (60 * 60 * 24 * 1000)).toFixed(1);
-
-      Cookies.set('token', user.token, { expires: Number(days) });
-      Router.push('/clients');
-    }
-  }, [user]);
 
   return (
     <form className={classes.form} onSubmit={formik.handleSubmit}>

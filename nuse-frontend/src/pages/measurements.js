@@ -6,11 +6,7 @@ import { Typography, Box } from '@material-ui/core';
 import PageTitle from 'src/components/util/PageTitle';
 import Layout from 'src/components/layout';
 
-import { useSelector } from 'react-redux';
-
 const Measurements = ({ t }) => {
-  const user = useSelector((state) => state.user);
-
   return (
     <>
       <PageTitle title={t('pages.measurements')} />

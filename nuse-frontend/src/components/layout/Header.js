@@ -12,9 +12,6 @@ import { Add, ExitToApp, Search } from '@material-ui/icons';
 
 import Cookies from 'js-cookie';
 
-import { useDispatch } from 'react-redux';
-import { logout } from '../../../redux/actions';
-
 const drawerWidth = 75;
 
 const useStyles = makeStyles((theme) => ({
@@ -66,11 +63,9 @@ const Header = ({ t, handleAdd, handleFind }) => {
   const classes = useStyles();
 
   const router = useRouter();
-  const dispatch = useDispatch();
 
   const handleLogout = () => {
     Cookies.set('token', '');
-    dispatch(logout());
     Router.push('/login');
   };
 

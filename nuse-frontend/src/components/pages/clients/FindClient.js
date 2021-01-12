@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 import {
   Button,
@@ -11,17 +12,14 @@ import {
   Typography,
 } from '@material-ui/core';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { getCostumers } from '../../../../redux/actions';
-
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
-const FindClient = ({ t, handleModal }) => {
-  const dispatch = useDispatch();
-  const loading = useSelector((state) => state.loading);
-  const error = useSelector((state) => state.error);
+const FindClient = ({ t, handleModal, setAllCustomers }) => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const FindClientSchema = yup.object().shape({
     username: yup.string().required('errors.requiredField'),
@@ -36,7 +34,22 @@ const FindClient = ({ t, handleModal }) => {
   });
 
   const handleClient = (values) => {
-    dispatch(getCostumers({ filterName: values.username, token: Cookies.getJSON('token') }));
+    setLoading(true);
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API}/customers/`, {
+        data: { filterName: values.username },
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        },
+      })
+      .then((res) => {
+        const { data } = res;
+        setAllCustomers(data.customers);
+      })
+      .catch(() => setError(true))
+      .then(() => setLoading(false));
   };
 
   return (
@@ -81,6 +94,7 @@ const FindClient = ({ t, handleModal }) => {
 FindClient.propTypes = {
   t: PropTypes.func,
   handleModal: PropTypes.func,
+  setAllCustomers: PropTypes.func,
 };
 
 export default FindClient;

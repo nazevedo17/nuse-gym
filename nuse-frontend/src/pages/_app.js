@@ -9,8 +9,6 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 import theme from '../theme';
 
-import { wrapper } from '../../redux/store';
-
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
@@ -53,4 +51,4 @@ const MyApp = ({ Component, pageProps }) => {
 
 MyApp.getInitialProps = async (appContext) => ({ ...(await App.getInitialProps(appContext)) });
 
-export default wrapper.withRedux(appWithTranslation(MyApp));
+export default appWithTranslation(MyApp);
