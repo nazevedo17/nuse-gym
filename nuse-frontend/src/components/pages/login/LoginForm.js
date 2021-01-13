@@ -6,10 +6,10 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Cookies from 'js-cookie';
 import jwt_decode from 'jwt-decode';
+import { login } from 'src/api/api';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button, CircularProgress, Typography } from '@material-ui/core';
-import { login } from 'src/api/api';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -43,6 +43,7 @@ const LoginForm = ({ t }) => {
 
   const handleLogin = (body) => {
     setLoading(true);
+    setError(false);
     login(body)
       .then((res) => {
         const { data } = res;

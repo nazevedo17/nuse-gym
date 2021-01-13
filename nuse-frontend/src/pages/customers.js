@@ -48,7 +48,9 @@ const Customers = ({ t, customers }) => {
         <section>
           <Box component="article" p={2}>
             <CustomersTable t={t} customers={allCustomers} loading={loading} setLoading={setLoading} />
-            {showAddCustomer && <AddCustomer t={t} handleModal={handleCustomerModal} />}
+            {showAddCustomer && (
+              <AddCustomer t={t} handleModal={handleCustomerModal} setAllCustomers={setAllCustomers} />
+            )}
             {showFindCustomer && (
               <FindCustomer t={t} handleModal={handleFindCustomerModal} setAllCustomers={setAllCustomers} />
             )}

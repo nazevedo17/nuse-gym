@@ -42,3 +42,17 @@ export const editCustomer = (body) => {
     console.log(error);
   }
 };
+
+export const addCustomer = (body) => {
+  try {
+    return axios.post(`${process.env.NEXT_PUBLIC_API}/customers/add`, body, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
