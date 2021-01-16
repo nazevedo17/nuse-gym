@@ -5,16 +5,18 @@
   "cancel": "Cancel",
   "find": "Find",
   "add": "Add",
+  "edit": "Editar",
   "pages": {
     "home": "Home",
-    "clients": "Clients",
+    "customers": "Customers",
     "measurements": "Measurements"
   },
   "textField": {
     "password": "Password"
   },
   "errors": {
-    "requiredField": "Required field"
+    "requiredField": "Required field",
+    "general": "An error has occurred, please try again."
   },
   "gender": {
     "male": "Male",

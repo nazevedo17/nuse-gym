@@ -19,5 +19,8 @@
   },
   "add": {
     "title": "Adicionar um cliente"
+  },
+  "edit": {
+    "title": "Editar um cliente"
   }
 }
