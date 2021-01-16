@@ -63,7 +63,7 @@ const Customers = ({ t, customers }) => {
           <Box component="article" p={2}>
             <CustomersTable t={t} customers={allCustomers} loading={loading} setLoading={setLoading} />
             {showAddCustomer && (
-              <HandleCustomer t={t} loading={loading} error={error} handleCustomerSubmit={handleAddCustomer} />
+              <HandleCustomer t={t} handleModal={handleCustomerModal} loading={loading} error={error} handleCustomerSubmit={handleAddCustomer} />
             )}
             {showFindCustomer && (
               <FindCustomer t={t} handleModal={handleFindCustomerModal} setAllCustomers={setAllCustomers} />

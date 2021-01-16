@@ -173,13 +173,13 @@ const HandleCustomer = ({ t, handleModal, handleCustomerSubmit, loading, error, 
           />
           <div className={classes.divInputs}>
             <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel id="label-language">{t('customers:table.gender')}</InputLabel>
+              <InputLabel id="label-language">{t('gender.gender')}</InputLabel>
               <Select
                 labelId="label-gender"
                 id="select-gender"
                 value={formik.values.gender}
                 onChange={(e) => formik.setFieldValue('gender', e.target.value)}
-                label={t('customers:table.gender')}
+                label={t('gender.gender')}
                 classes={{
                   outlined: classes.select,
                 }}

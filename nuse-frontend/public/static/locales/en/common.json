@@ -5,7 +5,7 @@
   "cancel": "Cancel",
   "find": "Find",
   "add": "Add",
-  "edit": "Editar",
+  "edit": "Edit",
   "pages": {
     "home": "Home",
     "customers": "Customers",
@@ -19,6 +19,7 @@
     "general": "An error has occurred, please try again."
   },
   "gender": {
+    "gender": "Gender",
     "male": "Male",
     "female": "Female",
     "other": "Other"

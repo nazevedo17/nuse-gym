@@ -56,3 +56,48 @@ export const addCustomer = (body) => {
     console.log(error);
   }
 };
+
+export const getMeasurements = (body) => {
+  try {
+    return axios.post(`${process.env.NEXT_PUBLIC_API}/measurements/customer`, body, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const editMeasurements = (body) => {
+  try {
+    return axios.put(`${process.env.NEXT_PUBLIC_API}/measurements/edit`, body, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteMeasurements = (body) => {
+  try {
+    return axios.delete(`${process.env.NEXT_PUBLIC_API}/measurements/delete`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      },
+      data: {
+        id: body.id,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

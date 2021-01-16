@@ -6,7 +6,7 @@ import { Edit } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 import { XGrid, useApiRef } from '@material-ui/x-grid';
 
-import ModalConfirm from './ModalConfirm';
+import ModalConfirm from '../../util/ModalConfirm';
 import HandleCustomer from 'src/components/pages/customers/HandleCustomer';
 
 import { editCustomer } from 'src/api/api';
@@ -42,25 +42,25 @@ const useStyles = makeStyles((theme) => ({
 const CustomersTable = ({ t, customers, loading, setLoading }) => {
   const classes = useStyles();
   const [showModal, setShowModal] = useState(false);
-  const [costumerData, setCostumerData] = useState(null);
+  const [customerData, setCustomerData] = useState(null);
   const [showEditCustomer, setShowEditCustomer] = useState(false);
   const [error, setError] = useState(false);
 
   const apiRef = useApiRef();
 
   const handleEditModal = (row) => {
-    setCostumerData(row);
+    setCustomerData(row);
     setShowEditCustomer((curr) => !curr);
   };
 
   const handleModal = (row) => {
-    setCostumerData(row);
+    setCustomerData(row);
     setShowModal((curr) => !curr);
   };
 
   const handleActive = () => {
     setLoading(true);
-    const body = { ...costumerData, active: !costumerData.active };
+    const body = { ...customerData, active: !customerData.active };
     editCustomer(body)
       .then((res) => {
         const { data } = res;
@@ -87,13 +87,13 @@ const CustomersTable = ({ t, customers, loading, setLoading }) => {
       });
   };
 
-  const updateCustomers = (costumer) => {
+  const updateCustomers = (customer) => {
     const newCustomers = [];
 
     for (var i in apiRef.current.state.rows.idRowsLookup) newCustomers.push(apiRef.current.state.rows.idRowsLookup[i]);
 
-    const costumerIndex = newCustomers.findIndex((costumer) => costumer.id == costumerData.id);
-    newCustomers[costumerIndex] = costumer;
+    const customerIndex = newCustomers.findIndex((customer) => customer.id == customerData.id);
+    newCustomers[customerIndex] = customer;
     apiRef.current.updateRows(newCustomers);
   };
 
@@ -106,7 +106,7 @@ const CustomersTable = ({ t, customers, loading, setLoading }) => {
     { field: 'address', headerName: t('customers:table.address'), width: 250 },
     {
       field: 'gender',
-      headerName: t('customers:table.gender'),
+      headerName: t('gender.gender'),
       valueGetter: (params) => getGender(t, params.row.gender),
     },
     {
@@ -120,7 +120,7 @@ const CustomersTable = ({ t, customers, loading, setLoading }) => {
     },
     {
       field: 'edit',
-      headerName: t('customers:table.edit'),
+      headerName: t('edit'),
       renderCell: (params) => {
         return <Edit onClick={() => handleEditModal(params.row)} className={classes.editIcon} />;
       },
@@ -150,7 +150,7 @@ const CustomersTable = ({ t, customers, loading, setLoading }) => {
           error={error}
           handleCustomerSubmit={handleEditCustomer}
           handleModal={() => handleEditModal(null)}
-          customerData={costumerData}
+          customerData={customerData}
         />
       )}
       <div className={classes.table}>
@@ -164,7 +164,15 @@ const CustomersTable = ({ t, customers, loading, setLoading }) => {
           // onPageChange={(pageChange) => console.log(pageChange)}
           pagination
         />
-        {showModal && <ModalConfirm t={t} handleModal={handleModal} handleActive={handleActive} />}
+        {showModal && (
+          <ModalConfirm
+            t={t}
+            handleModal={handleModal}
+            handleAction={handleActive}
+            title="customers:disable.title"
+            description="customers:disable.description"
+          />
+        )}
       </div>
     </>
   );
