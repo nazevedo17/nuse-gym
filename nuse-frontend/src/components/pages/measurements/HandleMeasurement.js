@@ -12,6 +12,10 @@ import {
   TextField,
   Typography,
   CircularProgress,
+  Select,
+  FormControl,
+  MenuItem,
+  InputLabel,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -42,22 +46,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const HandleMeasurement = ({
-  t,
-  handleModal,
-  handleMeasurementSubmit,
-  loading,
-  error,
-  measurementData,
-  customerId,
-}) => {
+const HandleMeasurement = ({ t, handleModal, handleMeasurementSubmit, loading, error, measurementData }) => {
   const classes = useStyles();
 
   const handleMeasurementSchema = yup.object().shape({
     age: yup.number().required('errors.requiredField'),
     height: yup.number().required('errors.requiredField'),
     weight: yup.number().required('errors.requiredField'),
+    customerId: yup.number().required('errors.requiredField'),
+    gender: yup.number().required('errors.requiredField'),
   });
+
+  const handleDate = () => {
+    let d = new Date(),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -65,9 +75,10 @@ const HandleMeasurement = ({
       age: measurementData ? measurementData.age : '',
       height: measurementData ? measurementData.height : '',
       weight: measurementData ? measurementData.weight : '',
-      customerId: measurementData ? measurementData.customerId : customerId,
-      measurementDate: measurementData ? measurementData.measurementDate : new Date().toLocaleDateString(),
-      bmi: measurementData ? measurementData.bmi : '',
+      customerId: measurementData ? measurementData.customerId : '',
+      measurementDate: measurementData ? measurementData.measurementDate : handleDate(),
+      bmi: measurementData ? measurementData.bmi : 0,
+      gender: measurementData ? measurementData.gender : '',
     },
     validationSchema: handleMeasurementSchema,
     onSubmit: (values) => handleMeasurementSubmit(values),
@@ -80,6 +91,46 @@ const HandleMeasurement = ({
           {t(measurementData ? 'measurements:edit.title' : 'measurements:add.title')}
         </DialogTitle>
         <DialogContent>
+          <div className={classes.divInputs}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="customerId"
+              label={t('measurements:table.customerId')}
+              name="customerId"
+              autoFocus
+              type="number"
+              onChange={formik.handleChange}
+              value={formik.values.customerId}
+              error={formik.touched.customerId && !!formik.errors.customerId}
+              helperText={formik.touched.customerId && t(formik.errors.customerId)}
+              disabled={loading}
+              disabled={measurementData ? true : false}
+            />
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="label-language">{t('gender.gender')}</InputLabel>
+              <Select
+                labelId="label-gender"
+                id="select-gender"
+                value={formik.values.gender}
+                onChange={(e) => formik.setFieldValue('gender', e.target.value)}
+                label={t('gender.gender')}
+                classes={{
+                  outlined: classes.select,
+                }}
+                disabled={measurementData ? true : false}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={1}>{t('gender.male')}</MenuItem>
+                <MenuItem value={2}>{t('gender.female')}</MenuItem>
+                <MenuItem value={0}>{t('gender.other')}</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
           <TextField
             variant="outlined"
             margin="normal"

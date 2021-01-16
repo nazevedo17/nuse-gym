@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Edit, Delete } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
@@ -129,6 +129,10 @@ const MeasurementsTable = ({ t, measurements, loading, setLoading }) => {
       },
     },
   ];
+
+  useEffect(() => {
+    apiRef.current.updateRows(measurements);
+  }, [measurements]);
 
   return (
     <>

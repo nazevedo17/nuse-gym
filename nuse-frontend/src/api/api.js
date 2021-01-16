@@ -101,3 +101,17 @@ export const deleteMeasurements = (body) => {
     console.log(error);
   }
 };
+
+export const addMeasurements = (body) => {
+  try {
+    return axios.post(`${process.env.NEXT_PUBLIC_API}/measurements/add`, body, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

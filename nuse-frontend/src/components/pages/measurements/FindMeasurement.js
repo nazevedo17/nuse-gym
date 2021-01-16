@@ -42,10 +42,7 @@ const FindMeasurement = ({ t, handleModal, setMeasurements }) => {
         setMeasurements(data.measurements);
         handleModal();
       })
-      .catch((err) => {
-        setError(true);
-        console.log(err);
-      })
+      .catch(() => setError(true))
       .then(() => {
         setLoading(false);
       });
