@@ -40,11 +40,11 @@ const FindCustomer = ({ t, handleModal, setAllCustomers }) => {
       .then((res) => {
         const { data } = res;
         setAllCustomers(data.customers);
+        handleModal();
       })
       .catch(() => setError(true))
       .then(() => {
         setLoading(false);
-        handleModal();
       });
   };
 
@@ -70,7 +70,7 @@ const FindCustomer = ({ t, handleModal, setAllCustomers }) => {
           />
           {error && (
             <Typography variant="subtitle2" align="center" color="error">
-              Erro
+              {t('errors.general')}
             </Typography>
           )}
         </DialogContent>

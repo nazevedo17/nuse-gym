@@ -7,8 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { XGrid, useApiRef } from '@material-ui/x-grid';
 
 import ModalConfirm from './ModalConfirm';
+import HandleCustomer from 'src/components/pages/customers/HandleCustomer';
 
-import Cookies from 'js-cookie';
 import { editCustomer } from 'src/api/api';
 
 const getGender = (t, genderEnum) => {
@@ -43,7 +43,15 @@ const CustomersTable = ({ t, customers, loading, setLoading }) => {
   const classes = useStyles();
   const [showModal, setShowModal] = useState(false);
   const [costumerData, setCostumerData] = useState(null);
+  const [showEditCustomer, setShowEditCustomer] = useState(false);
+  const [error, setError] = useState(false);
+
   const apiRef = useApiRef();
+
+  const handleEditModal = (row) => {
+    setCostumerData(row);
+    setShowEditCustomer((curr) => !curr);
+  };
 
   const handleModal = (row) => {
     setCostumerData(row);
@@ -54,21 +62,39 @@ const CustomersTable = ({ t, customers, loading, setLoading }) => {
     setLoading(true);
     const body = { ...costumerData, active: !costumerData.active };
     editCustomer(body)
-      .then(() => {
-        const newCustomers = [];
-
-        for (var i in apiRef.current.state.rows.idRowsLookup)
-          newCustomers.push(apiRef.current.state.rows.idRowsLookup[i]);
-
-        const costumerIndex = newCustomers.findIndex((costumer) => costumer.id == costumerData.id);
-        newCustomers[costumerIndex] = { ...costumerData, active: !costumerData.active };
-        apiRef.current.updateRows(newCustomers);
-      })
-      .catch((error) => console.log(error))
-      .then(() => {
+      .then((res) => {
+        const { data } = res;
+        updateCustomers(data.customer);
         handleModal(null);
+      })
+      .catch(() => setError(true))
+      .then(() => {
         setLoading(false);
       });
+  };
+
+  const handleEditCustomer = (body) => {
+    setLoading(true);
+    editCustomer(body)
+      .then((res) => {
+        const { data } = res;
+        updateCustomers(data.customer);
+        handleEditModal(null);
+      })
+      .catch(() => setError(true))
+      .then(() => {
+        setLoading(false);
+      });
+  };
+
+  const updateCustomers = (costumer) => {
+    const newCustomers = [];
+
+    for (var i in apiRef.current.state.rows.idRowsLookup) newCustomers.push(apiRef.current.state.rows.idRowsLookup[i]);
+
+    const costumerIndex = newCustomers.findIndex((costumer) => costumer.id == costumerData.id);
+    newCustomers[costumerIndex] = costumer;
+    apiRef.current.updateRows(newCustomers);
   };
 
   const columns = [
@@ -96,7 +122,7 @@ const CustomersTable = ({ t, customers, loading, setLoading }) => {
       field: 'edit',
       headerName: t('customers:table.edit'),
       renderCell: (params) => {
-        return <Edit onClick={() => console.log('edit')} className={classes.editIcon} />;
+        return <Edit onClick={() => handleEditModal(params.row)} className={classes.editIcon} />;
       },
     },
     {
@@ -116,18 +142,31 @@ const CustomersTable = ({ t, customers, loading, setLoading }) => {
   ];
 
   return (
-    <div className={classes.table}>
-      <XGrid
-        rows={customers}
-        columns={columns}
-        pageSize={10}
-        loading={loading}
-        apiRef={apiRef}
-        disableSelectionOnClick
-        // onPageChange={(pageChange) => console.log(pageChange)}
-      />
-      {showModal && <ModalConfirm t={t} handleModal={handleModal} handleActive={handleActive} />}
-    </div>
+    <>
+      {showEditCustomer && (
+        <HandleCustomer
+          t={t}
+          loading={loading}
+          error={error}
+          handleCustomerSubmit={handleEditCustomer}
+          handleModal={() => handleEditModal(null)}
+          customerData={costumerData}
+        />
+      )}
+      <div className={classes.table}>
+        <XGrid
+          rows={customers}
+          columns={columns}
+          pageSize={10}
+          loading={loading}
+          apiRef={apiRef}
+          disableSelectionOnClick
+          // onPageChange={(pageChange) => console.log(pageChange)}
+          pagination
+        />
+        {showModal && <ModalConfirm t={t} handleModal={handleModal} handleActive={handleActive} />}
+      </div>
+    </>
   );
 };
 

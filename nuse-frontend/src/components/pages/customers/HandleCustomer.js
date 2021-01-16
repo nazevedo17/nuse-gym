@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { addCustomer } from 'src/api/api';
 
 import {
   Button,
@@ -48,12 +46,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddCustomer = ({ t, handleModal, setAllCustomers }) => {
+const HandleCustomer = ({ t, handleModal, handleCustomerSubmit, loading, error, customerData }) => {
   const classes = useStyles();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
-  const addCustomerSchema = yup.object().shape({
+  const handleCustomerSchema = yup.object().shape({
     firstName: yup.string().required('errors.requiredField'),
     lastName: yup.string().required('errors.requiredField'),
     email: yup.string().email('invalid-email').required('errors.requiredField'),
@@ -63,37 +59,40 @@ const AddCustomer = ({ t, handleModal, setAllCustomers }) => {
     birthDate: yup.string().required('errors.requiredField'),
   });
 
+  const handleBirthDate = (birthDate) => {
+    let d = new Date(birthDate),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+  };
+
   const formik = useFormik({
     initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phoneNumber: '',
-      address: '',
-      gender: '',
-      birthDate: '',
+      id: customerData ? customerData.id : '',
+      firstName: customerData ? customerData.firstName : '',
+      lastName: customerData ? customerData.lastName : '',
+      email: customerData ? customerData.email : '',
+      phoneNumber: customerData ? customerData.phoneNumber : '',
+      address: customerData ? customerData.address : '',
+      gender: customerData ? customerData.gender : '',
+      birthDate: customerData ? handleBirthDate(customerData.birthDate) : '',
+      active: customerData ? customerData.active : true,
     },
-    validationSchema: addCustomerSchema,
-    onSubmit: (values) => handleAddCustomer(values),
+    validationSchema: handleCustomerSchema,
+    onSubmit: (values) => handleCustomerSubmit(values),
   });
-
-  const handleAddCustomer = (body) => {
-    setLoading(true);
-    addCustomer(body)
-      .then((res) => {
-        const { data } = res;
-
-        setAllCustomers((curr) => [...curr, data.customer]);
-        handleModal();
-      })
-      .catch(() => setError(true))
-      .then(() => setLoading(false));
-  };
 
   return (
     <Dialog open={true} onClose={handleModal} maxWidth="md" fullWidth>
       <form onSubmit={formik.handleSubmit}>
-        <DialogTitle id="alert-dialog-title">{t('customers:add.title')}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          {t(customerData ? 'customers:edit.title' : 'customers:add.title')}
+        </DialogTitle>
         <DialogContent>
           <div className={classes.divInputs}>
             <TextField
@@ -210,7 +209,7 @@ const AddCustomer = ({ t, handleModal, setAllCustomers }) => {
           </div>
           {error && (
             <Typography variant="subtitle2" align="center" color="error">
-              erro
+              {t('errors.general')}
             </Typography>
           )}
         </DialogContent>
@@ -219,7 +218,7 @@ const AddCustomer = ({ t, handleModal, setAllCustomers }) => {
             {t('cancel')}
           </Button>
           <Button type="submit" onClick={() => {}} color="secondary" autoFocus>
-            {!loading ? 'Add' : <CircularProgress size={24} color="secondary" />}
+            {!loading ? t(customerData ? 'edit' : 'add') : <CircularProgress size={24} color="secondary" />}
           </Button>
         </DialogActions>
       </form>
@@ -227,10 +226,13 @@ const AddCustomer = ({ t, handleModal, setAllCustomers }) => {
   );
 };
 
-AddCustomer.propTypes = {
+HandleCustomer.propTypes = {
   t: PropTypes.func,
   handleModal: PropTypes.func,
-  setAllCustomers: PropTypes.func,
+  handleCustomerSubmit: PropTypes.func,
+  loading: PropTypes.bool,
+  error: PropTypes.bool,
+  customerData: PropTypes.object,
 };
 
-export default AddCustomer;
+export default HandleCustomer;

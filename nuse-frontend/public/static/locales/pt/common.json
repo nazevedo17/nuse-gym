@@ -5,6 +5,7 @@
   "cancel": "Cancelar",
   "find": "Procurar",
   "add": "Adicionar",
+  "edit": "Editar",
   "pages": {
     "home": "Home",
     "customers": "Clientes",
@@ -14,7 +15,8 @@
     "password": "Palavra-passe"
   },
   "errors": {
-    "requiredField": "Campo obrigatório"
+    "requiredField": "Campo obrigatório",
+    "general": "Ocorreu algum erro, por favor tente de novo."
   },
   "gender": {
     "male": "Masculino",

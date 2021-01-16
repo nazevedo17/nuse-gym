@@ -5,6 +5,7 @@
   "cancel": "Cancel",
   "find": "Find",
   "add": "Add",
+  "edit": "Editar",
   "pages": {
     "home": "Home",
     "customers": "Customers",
@@ -14,7 +15,8 @@
     "password": "Password"
   },
   "errors": {
-    "requiredField": "Required field"
+    "requiredField": "Required field",
+    "general": "An error has occurred, please try again."
   },
   "gender": {
     "male": "Male",
