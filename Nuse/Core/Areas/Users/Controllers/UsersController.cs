@@ -19,9 +19,9 @@ namespace Nuse.Core.Areas.Users.Controllers
 
         [HttpPost(ApiRoutes.Users.Authenticate)]
         [AllowAnonymous]
-        public IActionResult Authenticate([FromBody] AuthenticateUserRequest request)
+        public async Task<IActionResult> Authenticate([FromBody] AuthenticateUserRequest request)
         {
-            var result = Mediator.Send(request).Result;
+            var result = await Mediator.Send(request);
 
             if (result != null)
                 return Ok(result);

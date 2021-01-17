@@ -1,25 +1,20 @@
 using AutoMapper;
-using Core.Data.Contexts;
-using Core.Data.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using Nuse.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Nuse.Core.Code.Auth;
+using Nuse.Core.Code.Database;
+using Nuse.Core.Code.Services;
+using Nuse.Core.Repositories;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Nuse.Core
 {
@@ -39,16 +34,21 @@ namespace Nuse.Core
 
             services.AddCors();
 
-            services.AddDbContext<NuseContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("NuseConnection"));
-            });
+            services.AddSingleton<ICurrentUser, CurrentUser>();
+
+            services.AddHttpContextAccessor();
 
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
-            //services.AddMediatR(typeof(Startup));
+            services.AddTransient<IMeasurementRepository, MeasurementRepository>();
+
             services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            services.AddDbContext<NuseContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("NuseConnection"));
+            });
 
             var key = Encoding.ASCII.GetBytes(Settings.Secret);
 
@@ -73,8 +73,10 @@ namespace Nuse.Core
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHttpContextAccessor httpContextAccessor, NuseContext db)
         {
+            ServiceLocator.Register(httpContextAccessor);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -96,6 +98,9 @@ namespace Nuse.Core
             {
                 endpoints.MapControllers();
             });
+
+            // Warmup for no delay on first request
+            db.Database.ExecuteSqlRaw("SELECT 1");
         }
     }
 }

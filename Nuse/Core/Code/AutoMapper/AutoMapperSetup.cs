@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
-using Core.Data.Models;
+using Nuse.Core.Areas.Measurements.Commands.Requests;
 using Nuse.Core.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Nuse.Core.Models;
 
 namespace Nuse.Core.Code.AutoMapper
 {
@@ -16,11 +13,23 @@ namespace Nuse.Core.Code.AutoMapper
 
             CreateMap<Customer, CustomerDTO>();
 
+            CreateMap<Measurement, MeasurementDTO>();
+
             #endregion
 
             #region DTO To Model
 
             CreateMap<CustomerDTO, Customer>();
+
+            CreateMap<CustomerDTO, Customer>();
+
+            #endregion
+
+            #region Request TO Model
+
+            CreateMap<AddMeasurementRequest, Measurement>();
+
+            CreateMap<EditMeasurementRequest, Measurement>();
 
             #endregion
         }

@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
-using Core.Data.Models;
-using Core.Data.Repositories;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Nuse.Core.Areas.Customers.Commands.Requests;
 using Nuse.Core.Areas.Customers.Commands.Responses;
 using Nuse.Core.DTOs;
-using System;
+using Nuse.Core.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -24,14 +23,12 @@ namespace Nuse.Core.Areas.Customers.Commands.Handlers
             this.mapper = mapper;
         }
 
-        public Task<GetAllCustomersResponse> Handle(GetAllCustomersRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllCustomersResponse> Handle(GetAllCustomersRequest request, CancellationToken cancellationToken)
         {
-            var result = new GetAllCustomersResponse()
+            return new GetAllCustomersResponse()
             {
-                Customers = mapper.Map<ICollection<CustomerDTO>>(customerRepository.GetAll().Where(x => (x.FirstName + " " + x.LastName).Contains(request.FilterName)).ToList())
+                Customers =  mapper.Map<ICollection<CustomerDTO>>(await customerRepository.GetAll().Where(x => (x.FirstName + " " + x.LastName).Contains(request.FilterName)).ToListAsync())
             };
-
-            return Task.FromResult(result);
         }
     }
 }

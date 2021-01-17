@@ -1,14 +1,8 @@
-﻿using Core.Data.Repositories;
-using MediatR;
-using Microsoft.IdentityModel.Tokens;
+﻿using MediatR;
 using Nuse.Core.Areas.Users.Commands.Requests;
 using Nuse.Core.Areas.Users.Commands.Responses;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
+using Nuse.Core.Code.Services;
+using Nuse.Core.Repositories;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,34 +21,19 @@ namespace Nuse.Core.Areas.Users.Commands.Handlers
 
         public async Task<AuthenticateUserResponse> Handle(AuthenticateUserRequest request, CancellationToken cancellationToken)
         {
-             var user = userRepository.GetUserByUsernamePasswordAsync(request.Username, request.Password).Result;
+             var user = await userRepository.GetUserByUsernamePasswordAsync(request.Username, request.Password);
 
             if (user == null)
                 return null;
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(Settings.Secret);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, user.Username),                    
-                }),
+            var customer = await customerRepository.GetCustomerByIdAsync(user.CustomerId);
 
-                Expires = DateTime.UtcNow.AddHours(12),
-
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-
-            var customer = customerRepository.GetCustomerByIdAsync(user.CustomerId).Result;
+            if (customer == null)
+                return null;
 
             return new AuthenticateUserResponse()
             {
-                Token = tokenHandler.WriteToken(token),
-                FirstName = customer.FirstName,
-                LastName = customer.LastName
+                Token = TokenService.GenerateUserToken(customer.Id, customer.Email, user.Username)
             };
         }
     }
