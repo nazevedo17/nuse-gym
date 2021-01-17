@@ -1,13 +1,12 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Router } from '../../../i18n';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../../../redux/actions';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Cookies from 'js-cookie';
+import jwt_decode from 'jwt-decode';
+import { login } from 'src/api/api';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button, CircularProgress, Typography } from '@material-ui/core';
@@ -25,14 +24,12 @@ const useStyles = makeStyles((theme) => ({
 const LoginForm = ({ t }) => {
   const classes = useStyles();
 
-  const dispatch = useDispatch();
-  const loading = useSelector((state) => state.loading);
-  const error = useSelector((state) => state.error);
-  const user = useSelector((state) => state.user);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const LoginSchema = yup.object().shape({
-    username: yup.string().required('errors.required-field'),
-    password: yup.string().required('errors.required-field'),
+    username: yup.string().required('errors.requiredField'),
+    password: yup.string().required('errors.requiredField'),
   });
 
   const formik = useFormik({
@@ -44,16 +41,21 @@ const LoginForm = ({ t }) => {
     onSubmit: (values) => handleLogin(values),
   });
 
-  const handleLogin = (values) => {
-    dispatch(login(values));
-  };
+  const handleLogin = (body) => {
+    setLoading(true);
+    setError(false);
+    login(body)
+      .then((res) => {
+        const { data } = res;
+        const jwtDecoded = jwt_decode(data.token);
+        const days = (jwtDecoded.exp / (60 * 60 * 24 * 1000)).toFixed(1);
 
-  useEffect(() => {
-    if (user && user.token) {
-      Cookies.set('token', user.token, { expires: 0.5 });
-      Router.push('/');
-    }
-  }, [user]);
+        Cookies.set('token', data.token, { expires: Number(days) });
+        Router.push('/customers');
+      })
+      .catch(() => setError(true))
+      .then(() => setLoading(false));
+  };
 
   return (
     <form className={classes.form} onSubmit={formik.handleSubmit}>
@@ -79,7 +81,7 @@ const LoginForm = ({ t }) => {
         required
         fullWidth
         name="password"
-        label={t('text-field.password')}
+        label={t('textField.password')}
         type="password"
         id="password"
         autoComplete="current-password"
