@@ -4,9 +4,7 @@
     "lastName": "Último Nome",
     "phoneNumber": "Telemóvel",
     "address": "Morada",
-    "gender": "Género",
     "birthDate": "Data de nascimento",
-    "edit": "Editar",
     "active": "Ativo"
   },
   "disable": {

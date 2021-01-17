@@ -2,17 +2,17 @@ import PropTypes from 'prop-types';
 
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 
-const ModalConfirm = ({ t, handleModal, handleActive }) => (
+const ModalConfirm = ({ t, handleModal, handleAction, title, description }) => (
   <Dialog open={true} onClose={handleModal}>
-    <DialogTitle id="alert-dialog-title">{t('customers:disable.title')}</DialogTitle>
+    <DialogTitle id="alert-dialog-title">{t(title)}</DialogTitle>
     <DialogContent>
-      <DialogContentText id="alert-dialog-description">{t('customers:disable.description')}</DialogContentText>
+      <DialogContentText id="alert-dialog-description">{t(description)}</DialogContentText>
     </DialogContent>
     <DialogActions>
       <Button onClick={handleModal} color="primary">
         {t('no')}
       </Button>
-      <Button onClick={handleActive} color="secondary" autoFocus>
+      <Button onClick={handleAction} color="secondary" autoFocus>
         {t('yes')}
       </Button>
     </DialogActions>
@@ -22,7 +22,7 @@ const ModalConfirm = ({ t, handleModal, handleActive }) => (
 ModalConfirm.propTypes = {
   t: PropTypes.func,
   handleModal: PropTypes.func,
-  handleActive: PropTypes.func,
+  handleAction: PropTypes.func,
 };
 
 export default ModalConfirm;

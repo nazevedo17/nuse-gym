@@ -19,6 +19,7 @@
     "general": "Ocorreu algum erro, por favor tente de novo."
   },
   "gender": {
+    "gender": "Género",
     "male": "Masculino",
     "female": "Feminino",
     "other": "Outro"
