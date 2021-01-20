@@ -2,6 +2,7 @@
 using MediatR;
 using Nuse.Core.Areas.Measurements.Commands.Requests;
 using Nuse.Core.Areas.Measurements.Commands.Responses;
+using Nuse.Core.Code.Services;
 using Nuse.Core.DTOs;
 using Nuse.Core.Repositories;
 using System.Threading;
@@ -28,6 +29,9 @@ namespace Nuse.Core.Areas.Measurements.Commands.Handlers
                 return null;
 
             mapper.Map(request, measurement);
+
+            if (!request.BMI.HasValue)
+                measurement.BMI = await BmiService.CalculateBmi(request.Age.Value, request.Weight.Value, request.Height.Value);
 
             measurement = await measurementRepository.UpdateAsync(measurement);
 

@@ -77,7 +77,7 @@ const HandleMeasurement = ({ t, handleModal, handleMeasurementSubmit, loading, e
       weight: measurementData ? measurementData.weight : '',
       customerId: measurementData ? measurementData.customerId : '',
       measurementDate: measurementData ? measurementData.measurementDate : handleDate(),
-      bmi: measurementData ? measurementData.bmi : 0,
+      bmi: null,
       gender: measurementData ? measurementData.gender : '',
     },
     validationSchema: handleMeasurementSchema,

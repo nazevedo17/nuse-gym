@@ -101,7 +101,14 @@ const MeasurementsTable = ({ t, measurements, loading, setLoading }) => {
   const columns = [
     { field: 'id', headerName: 'ID', hide: true },
     { field: 'customerId', headerName: t('measurements:table.customerId'), hide: true },
-    { field: 'bmi', headerName: t('measurements:table.bmi'), width: 195 },
+    {
+      field: 'bmi',
+      headerName: t('measurements:table.bmi'),
+      width: 195,
+      renderCell: (params) => {
+        return params.row.bmi.toFixed(2);
+      },
+    },
     {
       field: 'measurementDate',
       headerName: t('measurements:table.measurementDate'),

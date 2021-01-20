@@ -15,7 +15,7 @@ namespace Nuse.Core.Areas.Customers.Controllers
         {
         }
 
-        [HttpGet(ApiRoutes.Customers.GetAll)]
+        [HttpPost(ApiRoutes.Customers.GetAll)]
         [Authorize]
         public async Task<IActionResult> GetAllCustomers([FromBody] GetAllCustomersRequest request)
         {
