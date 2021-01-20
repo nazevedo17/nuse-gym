@@ -1,0 +1,34 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/nuse-frontend/node_modules
+/nuse-frontend/.pnp
+/nuse-frontend.pnp.js
+
+# testing
+/nuse-frontend/coverage
+
+# next.js
+/nuse-frontend/.next/
+/nuse-frontend/out/
+
+# production
+/nuse-frontend/build
+
+# misc
+/nuse-frontend.DS_Store
+/nuse-frontend*.pem
+
+# debug
+/nuse-frontendnpm-debug.log*
+/nuse-frontendyarn-debug.log*
+/nuse-frontendyarn-error.log*
+
+# local env files
+/nuse-frontend.env.local
+/nuse-frontend.env.development.local
+/nuse-frontend.env.test.local
+/nuse-frontend.env.production.local
+
+# vercel
+/nuse-frontend.vercel

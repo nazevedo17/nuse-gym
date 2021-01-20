@@ -1,0 +1,25 @@
+{
+  "find": {
+    "title": "Procurar medições",
+    "textField": "Id do cliente..."
+  },
+  "table": {
+    "customerId": "Cliente Id",
+    "bmi": "IMC",
+    "measurementDate": "Data Medições",
+    "age": "Idade",
+    "height": "Altura",
+    "weight": "Peso",
+    "delete": "Apagar"
+  },
+  "add": {
+    "title": "Adicionar uma medição"
+  },
+  "edit": {
+    "title": "Editar uma medição"
+  },
+  "disable": {
+    "title": "Tens a certeza que pretendes eliminar esta medição?",
+    "description": "Esta medição será excluída permanentemente."
+  }
+}

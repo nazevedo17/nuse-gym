@@ -1,0 +1,25 @@
+{
+  "find": {
+    "title": "Find measurements",
+    "textField": "Customer id..."
+  },
+  "table": {
+    "customerId": "Customer Id",
+    "bmi": "BMI",
+    "measurementDate": "Measurement Date",
+    "age": "Age",
+    "height": "Height",
+    "weight": "Weight",
+    "delete": "Delete"
+  },
+  "add": {
+    "title": "Add a measurement"
+  },
+  "edit": {
+    "title": "Edit a measurement"
+  },
+  "disable": {
+    "title": "Are you sure you want to delete this measurement?",
+    "description": "This measurement will be permanently deleted."
+  }
+}

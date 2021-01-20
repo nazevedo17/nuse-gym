@@ -15,7 +15,7 @@ namespace Nuse.Core.Areas.Measurements.Controllers
         {
         }
 
-        [HttpGet(ApiRoutes.Measurements.GetAllMeasurementsByCustomer)]
+        [HttpPost(ApiRoutes.Measurements.GetAllMeasurementsByCustomer)]
         [Authorize]
         public async Task<IActionResult> GetAllCustomers([FromBody] GetAllMeasurementsByCustomerRequest request)
         {

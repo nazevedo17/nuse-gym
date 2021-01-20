@@ -1,0 +1,27 @@
+{
+  "language": "Language",
+  "yes": "Yes",
+  "no": "No",
+  "cancel": "Cancel",
+  "find": "Find",
+  "add": "Add",
+  "edit": "Edit",
+  "pages": {
+    "home": "Home",
+    "customers": "Customers",
+    "measurements": "Measurements"
+  },
+  "textField": {
+    "password": "Password"
+  },
+  "errors": {
+    "requiredField": "Required field",
+    "general": "An error has occurred, please try again."
+  },
+  "gender": {
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other"
+  }
+}

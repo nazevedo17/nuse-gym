@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+}
+
+#nprogress .bar {
+  background: #d32822 !important;
+}
+
+.MuiDataGrid-window {
+  overflow-y: hidden !important;
+}
