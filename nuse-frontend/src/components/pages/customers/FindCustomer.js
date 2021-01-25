@@ -35,8 +35,8 @@ const FindCustomer = ({ t, handleModal, setAllCustomers }) => {
 
   const handleCustomer = (values) => {
     setLoading(true);
-    const body = { filterName: values.username };
-    getCustomers(body)
+    const name = values.username;
+    getCustomers(name)
       .then((res) => {
         const { data } = res;
         setAllCustomers(data.customers);

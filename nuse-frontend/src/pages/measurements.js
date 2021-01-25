@@ -39,8 +39,8 @@ const Measurements = ({ t }) => {
 
   const refreshMeasurements = (customerId) => {
     setLoading(true);
-    const body = { customerId };
-    getMeasurements(body)
+    const id = customerId;
+    getMeasurements(id)
       .then((res) => {
         const { data } = res;
         setMeasurements(data.measurements);

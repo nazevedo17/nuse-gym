@@ -2,9 +2,9 @@ import axios from 'axios';
 
 import Cookies from 'js-cookie';
 
-export const getCustomers = (body, token) => {
+export const getCustomers = (name, token) => {
   try {
-    return axios.post(`${process.env.NEXT_PUBLIC_API}/customers/`, body, {
+    return axios.get(`${process.env.NEXT_PUBLIC_API}/customers/?filterName=${name}`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -57,9 +57,9 @@ export const addCustomer = (body) => {
   }
 };
 
-export const getMeasurements = (body) => {
+export const getMeasurements = (id) => {
   try {
-    return axios.post(`${process.env.NEXT_PUBLIC_API}/measurements/customer`, body, {
+    return axios.get(`${process.env.NEXT_PUBLIC_API}/measurements/customer?customerId=${id}`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',

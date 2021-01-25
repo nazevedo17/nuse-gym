@@ -35,10 +35,11 @@ const FindMeasurement = ({ t, handleModal, setMeasurements }) => {
 
   const handleFindMeasurement = (values) => {
     setLoading(true);
-    const body = { customerId: parseInt(values.id) };
-    getMeasurements(body)
+    const id = values.id;
+    getMeasurements(id)
       .then((res) => {
         const { data } = res;
+        setMeasurements(null);
         setMeasurements(data.measurements);
         handleModal();
       })

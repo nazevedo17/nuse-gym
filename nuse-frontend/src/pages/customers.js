@@ -31,9 +31,9 @@ const Customers = ({ t, customers }) => {
   };
 
   const handleRefresh = () => {
-    const body = { filterName: '' };
+    const name = "";
     setLoading(true);
-    getCustomers(body)
+    getCustomers(name)
       .then((res) => {
         const { data } = res;
         setAllCustomers(data.customers);
@@ -80,8 +80,8 @@ Customers.getInitialProps = async (context) => {
   let customers = [];
 
   if (token) {
-    const body = { filterName: '' };
-    const response = await getCustomers(body, token);
+    const name = "";
+    const response = await getCustomers(name, token);
     customers = response.data.customers;
   } else {
     if (context.res) {
