@@ -4,27 +4,20 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using Nuse.Core;
+using Nuse.Core.Code;
 using Nuse.Core.Code.Auth;
-using Nuse.Core.Code.Database;
 using Nuse.Core.Code.Services;
 using Nuse.Core.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Nuse.Core.Repositories.Base;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Core
+namespace Nuse.Core
 {
     public class Startup
     {
@@ -38,7 +31,7 @@ namespace Core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(Nuse.Core.Code.AutoMapper.AutoMapperSetup));
+            services.AddAutoMapper(typeof(Code.AutoMapper.AutoMapperSetup));
             services.AddCors();
 
             services.AddSingleton<ICurrentUser, CurrentUser>();

@@ -1,5 +1,4 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using Nuse.Core.Code.Auth;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Nuse.Core.Code.Database;
+using Nuse.Core.Code;
 using Nuse.Core.Models;
+using Nuse.Core.Repositories.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,12 @@ namespace Nuse.Core.Repositories
         {
         }
 
-        public async Task<Measurement> GetMeasurementById(long id)
+        public async Task<Measurement> GetMeasurementById(Int64 id)
         {
             return await GetAll().FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<ICollection<Measurement>> GetAllMeasurementsByCustomerId(long customerId)
+        public async Task<ICollection<Measurement>> GetAllMeasurementsByCustomerId(Int64 customerId)
         {
             return await GetAll().Where(x => x.CustomerId == customerId).ToListAsync();
         }
