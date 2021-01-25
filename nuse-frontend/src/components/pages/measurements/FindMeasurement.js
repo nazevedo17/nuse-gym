@@ -39,7 +39,7 @@ const FindMeasurement = ({ t, handleModal, setMeasurements }) => {
     getMeasurements(id)
       .then((res) => {
         const { data } = res;
-        setMeasurements(null);
+        setMeasurements([]);
         setMeasurements(data.measurements);
         handleModal();
       })
