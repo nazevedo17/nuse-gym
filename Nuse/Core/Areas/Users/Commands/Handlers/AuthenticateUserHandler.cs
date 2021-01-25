@@ -21,7 +21,7 @@ namespace Nuse.Core.Areas.Users.Commands.Handlers
 
         public async Task<AuthenticateUserResponse> Handle(AuthenticateUserRequest request, CancellationToken cancellationToken)
         {
-             var user = await userRepository.GetUserByUsernamePasswordAsync(request.Username, request.Password);
+            var user = await userRepository.GetUserByUsernamePasswordAsync(request.Username, request.Password);
 
             if (user == null)
                 return null;
