@@ -1,4 +1,20 @@
 {
-  "dependencies": {},
-  "parameters": {}
+  "dependencies": {
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2021-01-23T03:55:53.134902Z"
+    }
+  },
+  "parameters": {
+    "mssql1.subscriptionId": {
+      "Name": "mssql1.subscriptionId",
+      "Type": "subscription",
+      "Value": "0f71e716-f9b6-4c5f-a9fb-0cd71d6d80f3"
+    },
+    "mssql1.resourceGroupName": {
+      "Name": "mssql1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "Nuse"
+    }
+  }
 }

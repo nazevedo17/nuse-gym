@@ -15,9 +15,9 @@ namespace Nuse.Core.Areas.Customers.Controllers
         {
         }
 
-        [HttpPost(ApiRoutes.Customers.GetAll)]
+        [HttpGet(ApiRoutes.Customers.GetAll)]
         [Authorize]
-        public async Task<IActionResult> GetAllCustomers([FromBody] GetAllCustomersRequest request)
+        public async Task<IActionResult> GetAllCustomers([FromQuery] GetAllCustomersRequest request)
         {
             var result = await Mediator.Send(request);
 
@@ -34,7 +34,7 @@ namespace Nuse.Core.Areas.Customers.Controllers
             var result = await Mediator.Send(request);
 
             if (result != null)
-                return Created(new Uri(ApiRoutes.Customers.AddCustomer, UriKind.Relative),result);
+                return Created(new Uri(ApiRoutes.Customers.AddCustomer, UriKind.Relative), result);
 
             return BadRequest();
         }

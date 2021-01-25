@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Nuse.Core.Models
 {
@@ -10,7 +9,7 @@ namespace Nuse.Core.Models
     {
         public Int64 Id { get; init; }
 
-        [Required]        
+        [Required]
         public Boolean Active { get; set; }
 
         [Required]

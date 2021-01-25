@@ -27,7 +27,7 @@ namespace Nuse.Core.Areas.Customers.Commands.Handlers
         {
             return new GetAllCustomersResponse()
             {
-                Customers =  mapper.Map<ICollection<CustomerDTO>>(await customerRepository.GetAll().Where(x => (x.FirstName + " " + x.LastName).Contains(request.FilterName)).ToListAsync())
+                Customers = mapper.Map<ICollection<CustomerDTO>>(await customerRepository.GetAll().Where(x => request.FilterName == null || (x.FirstName + " " + x.LastName).Contains(request.FilterName)).ToListAsync())
             };
         }
     }
